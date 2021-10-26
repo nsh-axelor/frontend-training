@@ -170,3 +170,28 @@ th{
     counter-increment: subsection;
     content: counter(section) "." counter(subsection) " ";
 }
+
+
+/* Links Example */
+.links{
+    background-color: yellow;
+    font-size: 2rem;
+}
+a:link {
+    color: red;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}

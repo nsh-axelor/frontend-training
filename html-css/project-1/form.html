@@ -1,22 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project-1</title>
     <style>
-        .label{
-            display: inline-block;
-            width: 120px;
-        }      
-        .role{
-            display: inline;
-        }  
+      .input {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px; 
+      }
+      .label {
+        width: 115px;
+        margin-right: 20px;
+      }
+      input,select{
+          margin: 5px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Projec-1 Form</h1>
     <form>
+
+        <!-- Username Input -->
+      <div class="input">
+        <div class="label" for="username">Username :</div>
+
+        <input
+          type="text"
+          name="username"
+          placeholder="Enter Your Username Here"
+        />
+      </div>
+
+      <!-- Password Input -->
+      <div class="input">
+        <div class="label" for="password">Password :</div>
+        <input
+          type="text"
+          name="password"
+          placeholder="Enter Your Password Here"
+        />
+      </div>
+
+      <!-- Employeement Input -->
+      <div class="input">
+        <div class="label" for="city">City Of Employeement :</div>
+        <div>
+          <input
+            type="text"
+            name="city"
+            placeholder="Enter Your City Of Employeement"
+          />
+        </div>
+      </div>
+
+      <!-- Select Server Input -->
+      <div class="input">
+        <div class="label">Web Server :</div>
+        <select name="server">
+          <option value="" disabled selected>Choose Your Server</option>
+          <option value="server1">Server 1</option>
+          <option value="server3">Server 2</option>
+          <option value="server4">Server 3</option>
+          <option value="server4">Server 4</option>
+        </select>
+      </div>
+
+      <!-- Role Radio Button Input -->
+      <div class="input">
+        <div class="label" for="">Please Specify Your Role :</div>
+        <div class="radiobuttons">
+          <input type="radio" name="role" value="Admin" />
+          <label for="">Admin</label>
+          <br />
+          <input type="radio" name="role" value="Engineer" />
+          <label for="">Engineer</label>
+          <br />
+          <input type="radio" name="role" value="Manager" />
+          <label for="">Manager</label>
+          <br />
+          <input type="radio" name="role" value="Admin" />
+          <label for="">Admin</label>
+        </div>
+      </div>
+
+
+      <!-- Signon Checkbox Input -->
+      <div class="input">
+        <div class="label">Single Sign on to the following :</div>
+        <div class="checkbox">
+          <input type="checkbox" name="signon" value="Mail" />
+          <label>Mail</label>
+          <br />
+          <input type="checkbox" name="signon" value="Payroll" />
+          <label>Payroll</label>
+          <br />
+          <input type="checkbox" name="signon" value="Self-Service" />
+          <label>Self-Service</label>
+        </div>
+      </div>
+
+      <!-- Submin And Reset Input  -->
+      <div class="input">
+        <div class="label"></div>
+        <input type="submit" value="Login" />
+        <input type="reset" value="Reset" />
+      </div>
+    </form>
+
+    <!-- <form>
         <label class="label" for="username">Username : </label>
         <input type="text" name="username" placeholder="Enter Your Username Here">
 
@@ -75,6 +168,6 @@
 
         <input type="submit" value="Login">
         <input type="reset" value="Reset">
-    </form>
-</body>
+    </form> -->
+  </body>
 </html>

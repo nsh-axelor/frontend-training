@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS_Practice</title>
+    <style>
+      .heading {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Function Example with events -->
+    <div class="function_with_action" style="background-color: red">
+      <h1 class="heading">Function with event example</h1>
+      <button onclick="clickMe()">Click Me</button>
+      <h3 id="result">Result Will be displayed Here</h3>
+    </div>
+
+    <!-- Function with parameters and return example -->
+    <div class="function_parameters_return" style="background-color: yellow">
+      <h1 class="heading">Function with parameters and return example</h1>
+      <button onclick="alert(sum(1,2))">Give Sum</button>
+    </div>
+
+    <!-- Common actions example -->
+    <!-- Onclick,OnMouseOver,OnMouseOut -->
+    <div class="common_actions_example" style="background-color: blue;">
+    <h1 class="heading">Common Actions Exmaple</h1>
+    <h2>Onclick,OnMouseOver,OnMouseOut</h2>
+    <button
+      onclick="this.innerHTML = 'You Clicked Me'"
+      onmouseover="this.innerHTML = 'On Mouse Over triggered'"
+      onmouseout="this.innerHTML='Click Me'"
+    >
+      Click Me
+    </button>
+
+    <!-- OnChange,OnKeyDown Example -->
+    <h2>OnChange,OnKeyDown Example</h2>
+    <input
+      type="text"
+      name=""
+      onchange="document.getElementById('onchange-act').innerText = this.value"
+      id=""
+      onkeydown="console.log('Key Pressed')"
+      placeholder="Type something here"
+    />
+    <h2 id="onchange-act"></h2>
+</div>
+
+<div class="date_example" style="background-color: cyan;">
+    <h1 class="heading">Date Class Example</h1>
+    <button onclick="getDateAndTime()">Get Date And Time</button>
+    <p id="info"></p>
+    <h2 id="date"></h2>
+    <h2 id="month"></h2>
+    <h2 id="year"></h2>
+    <h2 id="day"></h2>
+    <h2 id="hour"></h2>
+    <h2 id="minute"></h2>
+    <h2 id="second"></h2>
+</div>
+  </body>
+
+  <!-- Script tag example -->
+  <script>
+    // Function example with events
+    function clickMe() {
+      console.log("You Have Clicked The Button");
+      window.alert("You Have Clicked The Button");
+      if (window.confirm("Do You want to continue?")) {
+        document.getElementById("result").innerHTML =
+          "You Have Clicked Ok Button!!!";
+      } else {
+        document.getElementById("result").innerHTML =
+          "You Have Clicked Cancel Button!!!";
+      }
+    }
+
+    // Example of function with parameters and return statement
+    function sum(a, b) {
+      return a + b;
+    }
+  </script>
+  <script src="./js_practice.js"></script>
+</html>

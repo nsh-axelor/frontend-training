@@ -39,7 +39,7 @@
       <div class="input">
         <div class="label" for="password">Password :</div>
         <input
-          type="password"
+          type="text"
           name="password"
           placeholder="Enter Your Password Here"
           id="password"
@@ -119,29 +119,16 @@
         var numArray = Array.from("0123456789");
         return numArray.includes(char);
       }
-
-      // Helper Function
-      function charCount(s) {
-        var count = 0;
-        s.map((char) => {
-          if (char <= "0" || char >= "9") {
-            count += 1;
-          }
-        });
-        return count;
-      }
-
       // Fetching password
       const password = document.getElementById("password").value.split("");
-      console.log(charCount(password));
       if (
         password.some(isAnyNumber) &&
-        password.length >= 9 &&
-        charCount(password) >= 8
+        password.length >= 8
       ) {
         return true;
+
       }
-      alert("Password should have atleast 8 character and 1 digit");
+      alert("Password should have atleast 8 character and it should include atleast 1 digit");
       return false;
     }
   </script>

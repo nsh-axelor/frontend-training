@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project-1</title>
+    <style>
+      .input {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .label {
+        width: 115px;
+        margin-right: 20px;
+      }
+      input,
+      select {
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Projec-1 Form</h1>
+    <form onsubmit="return validateForm()">
+      <!-- Username Input -->
+      <div class="input">
+        <div class="label" for="username">Username :</div>
+
+        <input
+          type="text"
+          name="username"
+          placeholder="Enter Your Username Here"
+          id="username"
+          required
+        />
+      </div>
+
+      <!-- Password Input -->
+      <div class="input">
+        <div class="label" for="password">Password :</div>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter Your Password Here"
+          id="password"
+          required
+        />
+      </div>
+
+      <!-- Employeement Input -->
+      <div class="input">
+        <div class="label" for="city">City Of Employeement :</div>
+        <div>
+          <input
+            type="text"
+            name="city"
+            placeholder="Enter Your City Of Employeement"
+          />
+        </div>
+      </div>
+
+      <!-- Select Server Input -->
+      <div class="input">
+        <div class="label">Web Server :</div>
+        <select name="server">
+          <option value="" disabled selected>Choose Your Server</option>
+          <option value="server1">Server 1</option>
+          <option value="server3">Server 2</option>
+          <option value="server4">Server 3</option>
+          <option value="server4">Server 4</option>
+        </select>
+      </div>
+
+      <!-- Role Radio Button Input -->
+      <div class="input">
+        <div class="label" for="">Please Specify Your Role :</div>
+        <div class="radiobuttons">
+          <input type="radio" name="role" value="Admin" />
+          <label for="">Admin</label>
+          <br />
+          <input type="radio" name="role" value="Engineer" />
+          <label for="">Engineer</label>
+          <br />
+          <input type="radio" name="role" value="Manager" />
+          <label for="">Manager</label>
+          <br />
+          <input type="radio" name="role" value="Admin" />
+          <label for="">Admin</label>
+        </div>
+      </div>
+
+      <!-- Signon Checkbox Input -->
+      <div class="input">
+        <div class="label">Single Sign on to the following :</div>
+        <div class="checkbox">
+          <input type="checkbox" name="signon" value="Mail" />
+          <label>Mail</label>
+          <br />
+          <input type="checkbox" name="signon" value="Payroll" />
+          <label>Payroll</label>
+          <br />
+          <input type="checkbox" name="signon" value="Self-Service" />
+          <label>Self-Service</label>
+        </div>
+      </div>
+
+      <!-- Submin And Reset Input  -->
+      <div class="input">
+        <div class="label"></div>
+        <input type="submit" value="Login" />
+        <input type="reset" value="Reset" />
+      </div>
+    </form>
+  </body>
+  <script>
+    function validateForm() {
+      // Helper Function
+      function isAnyNumber(char) {
+        var numArray = Array.from("0123456789");
+        return numArray.includes(char);
+      }
+
+      // Helper Function
+      function charCount(s) {
+        var count = 0;
+        s.map((char) => {
+          if (char <= "0" || char >= "9") {
+            count += 1;
+          }
+        });
+        return count;
+      }
+
+      // Fetching password
+      const password = document.getElementById("password").value.split("");
+      console.log(charCount(password));
+      if (
+        password.some(isAnyNumber) &&
+        password.length >= 9 &&
+        charCount(password) >= 8
+      ) {
+        return true;
+      }
+      alert("Password should have atleast 8 character and 1 digit");
+      return false;
+    }
+  </script>
+</html>

@@ -1,0 +1,197 @@
+body{
+    counter-reset: section;
+}
+
+/* Backgroud Image and color Example */
+.background_color_image_example{
+    background: #fff url("axelor-image.png") no-repeat center;
+    /* background-size: cover; */
+    /* background-color: black; */
+    /* opacity: 0.3; */
+    /* background-image: url("axelor-image.png"); */
+    /* background-repeat: no-repeat; */
+    height: 200px;
+}
+
+
+/* Colors Borders Example */
+.color_example{
+    background-color: red;
+    border-width: 5px 10px 0px;
+    border-style: solid dashed;
+    border-color: rgb(255, 155, 55);
+   
+}
+.color_example h1{
+    color:#fff;
+    border: 3px solid rgb(55, 155, 255);
+    border-radius: 10px;
+}
+
+/* Margin Padding Height Width Outline Example */
+.margin_padding_height_width_outline_example{
+    background-color: black;
+    border: 5px solid red;
+    color: white;
+    padding: 20px;
+    margin: 20px 5px 2px 10px;
+    outline: 10px solid yellow;
+}
+.margin_padding_height_width_example h1{
+    padding: 10px;
+    border: 2px solid white;
+    width: 50%;
+    height: 50px;
+    background-color: red;
+}
+
+
+/* Text Example */
+.text_font_example{
+    background: blue;
+    color: white;
+    text-align: center;
+    text-transform:uppercase;
+}
+.text_example{
+    font-size: 20px;
+    text-decoration: underline;
+    text-shadow: 2px 2px red;
+}
+.font_example{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-variant:small-caps;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+
+/* Table Example */
+table,tr,td,th{
+    border: 4px solid red;
+    border-collapse: collapse;
+}
+table{
+    width: 90%;
+    text-align: center;
+    font-size: 20px;
+}
+tr:nth-child(odd){
+    background-color: black;
+    color: white;
+}
+tr:hover{
+    background-color: yellow;
+    color: red;
+    height: 50px;
+}
+th{
+    height: 40px;
+}
+
+
+/* max-width Example */
+.max-width_example {
+    font-size: 50px;
+  max-width: 500px;
+  margin: 20px auto;
+  border: 3px solid #73AD21;
+}
+
+/* Overflow Example */
+.overflow_example {
+    background-color: #eee;
+    width: 200px;
+    height: 200px;
+    border: 1px dotted black;
+    overflow: auto;
+}
+  
+
+/* Combinators Example */
+.combinators_example{
+    background-color: cyan;
+}
+.decendent p{
+    background-color: yellow;
+}
+.child > p{
+    background-color: yellow;
+}
+.sibling_class + p{
+    background-color: yellow;   
+}
+.general_sibling_class ~ p{
+    background-color: yellow;
+}
+
+
+.attr_selector{
+    background-color:cornflowerblue;
+    margin-top: 50px;
+}
+
+.one > input[type]{
+    background-color: red;
+}
+
+.two > input[type="button"]{
+    background-color: yellow;
+}
+
+.three > p[name ~= "Nandit"]{
+    background-color: skyblue;
+}
+.four > p[name ^="Nandit"] {
+    background-color:blue;
+}
+.five > p[name $=".html"] {
+    background-color:brown;
+}
+.six > p[name *="Nandit"] {
+    background-color:brown;
+}
+
+
+  /* Counter Example */
+.css_counter{
+    background-color: aqua;
+}
+.section {
+    counter-reset: subsection;
+}
+  
+.section::before {
+    counter-increment: section;
+    content: "Section " counter(section) ". ";
+}
+.sub-section::before {
+    counter-increment: subsection;
+    content: counter(section) "." counter(subsection) " ";
+}
+
+
+/* Links Example */
+.links{
+    background-color: yellow;
+    font-size: 2rem;
+}
+a:link {
+    color: red;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}

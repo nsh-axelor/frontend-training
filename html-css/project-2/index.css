@@ -12,6 +12,8 @@ body{
     background-color:darkturquoise;
     height: 150px;
     color: white;
+    text-transform:uppercase;
+
 }
 .navbar-content{
     padding-top: 55px;
@@ -21,21 +23,30 @@ body{
     display: inline;
     font-size: 3rem;
     padding-left:90px;
+
 }
 
+.name > a{
+    color: white;
+
+}
 ul{
     float: right;
     color: white;
 }
 a{
     text-decoration: none;
-
 }
 li{
     padding: 40px;
     list-style: none;
     display: inline;
     font-size: 2rem;
+
+}
+
+li > a{
+    color: white;
 }
 
 ul a:hover{
@@ -58,7 +69,7 @@ ul a:hover{
 
 
 /* Common between about,contact,projects section */
-.about,.contact,.projects{
+.about,.projects{
     width: 80%;
     margin: 50px auto;
     text-align: center;
@@ -79,33 +90,44 @@ ul a:hover{
 
 
 /* For Contact Section  */
+.contact{
+    text-align: center;
+    /* width: 100%; */
+    margin: 50px;
+}
 .contact-form{
+    text-align: left;
     margin-top: 50px;
 }
 
+.labels{
+    width: 12%;
+    font-size: 1.3rem;
+    margin-right: 20px;
+}
+
+.input{
+    justify-content: center;
+    display: flex;
+    align-items: baseline;
+}
+
 input{
-    width: 80%;
-    text-align: center;
-    font-size: 1.5rem;
+    width: 70%;
+    font-size: 1.2rem;
     font-family:'Balsamiq Sans', cursive;
-    height: 40px;
+    height: 30px;
     margin: 10px 10px 40px 10px;
 }
-
-
 textarea{
-    text-align: center;
-    width: 80%;
+    width: 70%;
     height: 200px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-family:'Balsamiq Sans', cursive;
-}
-
-.labels{
-    font-size: 1.7rem;
 }
 
 button{
+    margin: 40px 10px;
     font-family:'Balsamiq Sans', cursive;
     font-size: 1.5rem;
     color: red;

@@ -186,3 +186,35 @@ function checkWeekendStatus(){
             vote_result.innerText = "Looking forward to the Weekend";
     }
 }
+
+
+// For Exxample
+const intern_list = document.getElementById("intern_list");
+for(let i = 0;i<interns.length;i++){
+    intern_list.innerHTML += "<li>"+interns[i]+"</li>"
+}
+
+
+// For of Example
+const numbers_list = document.getElementById("numbers_list")
+for(let number of numbers){
+    numbers_list.innerHTML += "<li> Square of "+number+" is "+Math.pow(number,2)+"</li>"
+}
+
+
+// For In Example
+const intern_data_list = document.getElementById("intern_detail");
+for(let data in intern){
+    intern_data_list.innerHTML += "<li> "+data+" : "+intern[data]+"</li>"
+}
+
+// While Example
+function getSum(n){
+    let i = 1
+    let sum = 0
+    while (i <= n){
+        sum += i
+        i++
+    }
+    document.getElementById("while_result").innerText = "The sum of total 1 to "+n+" number is "+sum;  
+}

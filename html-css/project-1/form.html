@@ -21,7 +21,7 @@
   </head>
   <body>
     <h1>Projec-1 Form</h1>
-    <form onsubmit="return validateForm()">
+    <form>
       <!-- Username Input -->
       <div class="input">
         <div class="label" for="username">Username :</div>
@@ -112,37 +112,4 @@
       </div>
     </form>
   </body>
-  <script>
-    function validateForm() {
-      // Helper Function
-      function isAnyNumber(char) {
-        var numArray = Array.from("0123456789");
-        return numArray.includes(char);
-      }
-
-      // Helper Function
-      function charCount(s) {
-        var count = 0;
-        s.map((char) => {
-          if (char <= "0" || char >= "9") {
-            count += 1;
-          }
-        });
-        return count;
-      }
-
-      // Fetching password
-      const password = document.getElementById("password").value.split("");
-      console.log(charCount(password));
-      if (
-        password.some(isAnyNumber) &&
-        password.length >= 9 &&
-        charCount(password) >= 8
-      ) {
-        return true;
-      }
-      alert("Password should have atleast 8 character and 1 digit");
-      return false;
-    }
-  </script>
 </html>

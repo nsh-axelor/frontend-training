@@ -152,3 +152,37 @@ function getDateAndTime() {
     var info = `Date -- ${d.getDate()} || Month -- ${d.getMonth()} || Year -- ${d.getFullYear()} || Day -- ${d.getDay()} || Hour -- ${d.getHours()} || Minutes -- ${d.getMinutes()} || Seconds -- ${d.getSeconds()}`
     document.getElementById("info").innerHTML = info
 }
+
+
+
+// If Example
+function checkVoteEligibility(){
+    const age = document.getElementById("age_check").value;
+    var vote_result = document.getElementById("vote_result");
+    if(age < 18){
+        vote_result.innerText = "You are too small for voting"
+    }else if(age >= 71){
+        vote_result.innerText = "You are too old for voting"
+    }else{
+        vote_result.innerText = "You are elidigible for voting"
+    }
+
+}
+
+
+// If Example
+function checkWeekendStatus(){
+    var vote_result = document.getElementById("weekend_result");
+    switch(new Date().getDay()){
+        case 4:
+        case 5:
+            vote_result.innerText = "Soon it is Weekend";
+          break;
+        case 0:
+        case 6:
+            vote_result.innerText = "It is Weekend";
+          break;
+        default:
+            vote_result.innerText = "Looking forward to the Weekend";
+    }
+}

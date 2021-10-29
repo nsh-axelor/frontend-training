@@ -218,3 +218,96 @@ function getSum(n){
     }
     document.getElementById("while_result").innerText = "The sum of total 1 to "+n+" number is "+sum;  
 }
+
+
+
+// Set Example
+console.log("Set Example");
+const set = new Set([1,2,3])
+set.add(4)
+set.add(1)
+set.add(2)
+// Size Example
+console.log("Set Size Example"+set.size);
+set.delete(1)
+console.log(set.has(5))
+
+
+// Map Example
+console.log("Map Example");
+
+
+
+
+// Map Example
+console.log("Map Example");
+var map = new Map([["name","Nandit"],["surname","Shah"],["age",21]])
+map.set("semester",7)
+map.set("duration","6 Months")
+map.set("CGPA",9.50)
+console.log(map.get('CGPA'));
+console.log(map.has("CPI"));
+map.delete("age")
+console.log(map.has("age"));
+console.log(map.size);
+// Entries Example
+for(entry of map.entries()){
+    console.log(entry);
+}
+
+
+
+// Decimal to binary
+function getBinary(decimal){
+    document.getElementById("binary_result").innerHTML = (decimal >>> 0).toString(2);
+} 
+
+// Binary to decimal
+function getDecimal(binary){
+    document.getElementById("decimal_result").innerHTML = parseInt(binary,2).toString(10);
+}
+
+
+// Exception Handling
+function exceptionFunction(num) {
+    const message = document.getElementById("exception_result");
+    message.innerHTML = "";
+    try {
+      if(num == "") throw "is empty";
+      if(isNaN(num)) throw "is not a number";
+      x = Number(num);
+      if(num > 10) throw "is too high";
+      if(num < 5) throw "is too low";
+    }
+    catch(err) {
+      message.innerHTML = "Error: " + err + ".";
+    }
+    finally {
+      document.getElementById("exception_input").value = "";
+    }
+}
+
+
+
+
+// Class Example
+console.log("Class Example");
+class Intern{
+    constructor(name,surname,age,frontend){
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.frontend = frontend;
+    }
+
+    fullname(){
+        return this.name+" "+this.surname;
+    }
+}
+var nandit = new Intern("Nandit","Shah",20,true)
+console.log("Full Name of Intern -- "+nandit.fullname());
+console.log("Age of the Intern -- "+nandit.age);
+console.log("Is Intern from frontend section -- "+(nandit.frontend ? "Yes" : "No"));
+
+
+

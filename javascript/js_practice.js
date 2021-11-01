@@ -311,3 +311,13 @@ console.log("Is Intern from frontend section -- "+(nandit.frontend ? "Yes" : "No
 
 
 
+// Converting Simple strong to JSON object
+console.log("JSON Example");
+let json_string = '{"interns" : [{"name":"Shah Nandit"},{"name":"Mo Kaif"},{"name":"Jani Kishan"},{"name":"Ladva Jaydeep"}],'+
+'"employees":[{"name":"Mayank Sir"},{"name":"Rohan Sir"},{"name":"Chirag Sir"}]}';
+    
+var json_obj = JSON.parse(json_string)
+
+console.log(json_obj);
+console.log(json_obj.interns[3].name);
+console.log(json_obj.employees[1].name);

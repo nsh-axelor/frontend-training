@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Practice</title>
+</head>
+<body>
+    
+    <!-- getElementById Example -->
+    <p id="id_example"></p>
+
+    <div class="tag_example">
+        <h1>Hello</h1>
+        <h1>World</h1>
+        <h1>This</h1>
+        <h1>is</h1>
+        <h1>Nandit</h1>
+    </div>
+
+    <div class="class_example"></div>
+
+
+    <p class="query_selector_example"></p>
+    <p class="query_selector_example"></p>
+
+
+    <div class="form_example" style="background-color: chocolate;">
+        <h1>Form Example</h1>
+        <form id="form_example">
+            First name: <input type="text" name="fname" ><br>
+            Last name: <input type="text" name="lname" ><br><br>
+            <input type="button" value="Submit" onclick="handleSubmit()">
+        </form>
+        <h1 id="form_output"></h1>
+    </div>
+
+
+    <div class="attribute_change_example">
+        <img id="anime_image" src="https://wallpapercave.com/wp/wp8562124.jpg" alt="Naruto Image" width="100px" height="100px" >
+        <button onclick="changeImage()">Change to AOT</button>
+        <button id="remove_btn">Remove Image</button>
+    </div>
+
+
+    <div id="nodes_example">
+        <p id='p1'>Hello there</p>
+        <p id='p2'>This is nodes example</p>
+        <button onclick="appendPara()">AppendPara</button>
+        <button id="remove_para_btn">RemovePara</button>    
+        <button onclick="addBetween()">InsertBetween</button>    
+    </div>
+
+<script src="html_dom.js"></script>
+</body>
+</html>

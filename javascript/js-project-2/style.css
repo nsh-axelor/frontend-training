@@ -1,0 +1,53 @@
+#month_select{
+    width: 200px;
+    height: 50px;
+    margin: 40px 120px;
+    background-color: white;
+    border: 2px solid red;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+table,tr,td,th{
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: 0.5px solid lightgray;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+td,th{
+    width: 60px;
+    height: 30px;
+}
+
+td:nth-child(1){
+    color: red;
+}
+
+td:nth-child(6){
+    color: green;
+}
+
+
+.btn{
+    height: 50px;
+    margin: 30px;
+    outline: none;
+    border: 1px solid red;
+    background-color: white;
+    font-size: 1.5rem;
+    width: 150px;
+    color: red;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    transition: 0.5s;
+}
+
+.btn:hover{
+    background-color: red;
+    color: white;
+    border: 1px solid white;
+}

@@ -3,7 +3,6 @@ var today = new Date()
 let monthSelect = document.getElementById("month_select");
 const calendarTable = document.getElementById("calendar_table")
 
-
 document.addEventListener('load', handleOnLoad())
 
 // Function for loading the calendar
@@ -72,4 +71,19 @@ function displayCalendar(month) {
 monthSelect.addEventListener('change', handleOnChange)
 function handleOnChange() {
     displayCalendar(Number(monthSelect.value));
+}
+
+
+// Function for Next button
+function nextMonth(){
+    let nextMonth = Number(monthSelect.value) + 1
+    monthSelect.children[nextMonth].selected = 'selected'
+    displayCalendar(nextMonth);
+}
+
+// Function for Previous button
+function prevMonth(){
+    let prevMonth = Number(monthSelect.value) - 1 
+    monthSelect.children[prevMonth].selected = 'selected'
+    displayCalendar(prevMonth);
 }

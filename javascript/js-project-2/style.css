@@ -1,14 +1,31 @@
-#month_select{
+.input{
+    margin: 15px;
+    background-color: white;
+    border: 2px solid red;
+    width: 180px;
+    height: 50px;
+    font-size: 1.5rem;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: center;
+}
+/* #month_select{
     width: 200px;
     height: 50px;
-    margin: 40px 120px;
+    margin: 40px 40px;
     background-color: white;
     border: 2px solid red;
     font-family: 'Kanit', sans-serif;
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.5rem;
     text-align: center;
-}
+} */
+
+
+/* #year_input{
+
+
+} */
 
 table,tr,td,th{
     font-family: 'Kanit', sans-serif;

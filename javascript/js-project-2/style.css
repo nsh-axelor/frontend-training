@@ -55,6 +55,9 @@ td:nth-child(6){
     color: white;
     border: 1px solid white;
 }
+.diabled{
+    color: grey;
+}
 
 
 td:hover{

@@ -37,7 +37,7 @@ function displayCalendar(month,year) {
     calendarTable.appendChild(calender)
 
     let row = 0
-    let k = 1
+    let day = 1
 
     // If 1st day of month is not the sunday than fill that cell with empty space
     if (date.getDay() != 0) {
@@ -50,7 +50,7 @@ function displayCalendar(month,year) {
     }
 
     // Main Calendar Loop 
-    while (k <= daysInMonth) {
+    while (day <= daysInMonth) {
         for (var i = 0; i <= 6; i++) {
             
             if (calender.children[row].childElementCount >= 7) {
@@ -59,12 +59,12 @@ function displayCalendar(month,year) {
             }
 
             const td = document.createElement("td");
-            const textNode = document.createTextNode(k)
-            k++
+            const textNode = document.createTextNode(day)
+            day++
             td.appendChild(textNode)
             calender.children[row].appendChild(td)
 
-            if (k >= daysInMonth) {
+            if (day >= daysInMonth) {
                 break
             }
         }
@@ -81,15 +81,26 @@ function handleOnChangeForMonth() {
 yearInput.addEventListener('change',validateYearAndDisplayCalendar)
 function validateYearAndDisplayCalendar(){
     let year = Number(yearInput.value);
-
+    const nextButton = document.getElementById("next");
+    const prevButton = document.getElementById("prev");
     if(year <= 1970 || year >= 3000){
         yearInput.style.backgroundColor="red"        
         yearInput.style.borderColor="red"
+        prevButton.disabled = true;
+        nextButton.disabled = true;
+        nextButton.classList.add('diabled')
+        prevButton.classList.add('diabled')
+        monthSelect.disabled = true;
         alert("Enter Year Value between 1970 to 3000");
     }else{
         yearInput.style.backgroundColor="white"        
         yearInput.style.borderColor="green"
         displayCalendar(monthSelect.value,yearInput.value);
+        prevButton.disabled = false;
+        nextButton.disabled = false;
+        nextButton.classList.remove('diabled')
+        prevButton.classList.remove('diabled')
+        monthSelect.disabled = false
     }
 }
 

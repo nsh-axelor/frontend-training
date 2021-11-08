@@ -44,6 +44,7 @@ function displayCalendar(month,year) {
         console.log(date);
         for (var i = 0; i < date.getDay(); i++) {
             const td = document.createElement("td");
+            td.setAttribute("empty",true)
             calender.children[0].appendChild(td)
         }
     }
@@ -75,14 +76,19 @@ monthSelect.addEventListener('change', handleOnChangeForMonth)
 function handleOnChangeForMonth() {
     displayCalendar(Number(monthSelect.value),Number(yearInput.value));
 }
-
+    
 
 yearInput.addEventListener('change',validateYearAndDisplayCalendar)
 function validateYearAndDisplayCalendar(){
     let year = Number(yearInput.value);
+
     if(year <= 1970 || year >= 3000){
+        yearInput.style.backgroundColor="red"        
+        yearInput.style.borderColor="red"
         alert("Enter Year Value between 1970 to 3000");
     }else{
+        yearInput.style.backgroundColor="white"        
+        yearInput.style.borderColor="green"
         displayCalendar(monthSelect.value,yearInput.value);
     }
 }

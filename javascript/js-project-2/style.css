@@ -35,10 +35,13 @@ td:nth-child(6){
     color: green;
 }
 
+.calendar_div{
+    height: 240px;
+}
 
 .btn{
     height: 50px;
-    margin: 30px;
+    margin: 10px 30px;
     outline: none;
     border: 1px solid green;
     background-color: white;

@@ -13,7 +13,7 @@ const args = process.argv.slice(2)
 args.forEach((val, index) => {
     console.log(`${index}: ${val}`)
 })
-  
+
 console.log(chalk.red("Hello in red"));
 
 // let isPromiseResolved = true;
@@ -60,7 +60,7 @@ console.log(chalk.red("Hello in red"));
 //         console.log("File Size -- "+stat.size);
 //     }
 // })
-  
+
 
 // Path Example
 // const dummyPath = "Nandit/Shail/shah.txt";
@@ -119,3 +119,54 @@ console.log(chalk.red("Hello in red"));
 
 // console.log(http.METHODS);
 // console.log(http.STATUS_CODES);
+
+
+// Prmoises Practice
+// function promisePractice(){
+//     let err = false;
+
+//     return new Promise((resolve,reject) => {
+//         if(!err){
+//             console.log(chalk.green("The Promise is resolved"));
+//             resolve()
+//         }else{
+//             console.log(chalk.red("The promise is not resolved"));
+//             reject("Due to error = 'True'")
+//         }
+//     })
+// }
+// promisePractice().then(() =>{
+//     console.log(chalk.green("Thanks for resolving Promise"));
+// }
+// ).catch((msg) => {
+//     console.log(chalk.red("Reason - "+msg));
+// })
+
+
+
+
+// Async - Await Example
+
+// async function asynAwaitExample() {
+
+//     console.log(2);
+//     try {
+//         console.log(3);
+//         await wait()
+//         return 5
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+// function wait(){
+//     setTimeout(() => {},2000)
+// }
+
+// console.log(1);
+// asynAwaitExample().then((result) => {
+//     console.log(result);
+// })
+// console.log(6);
+// console.log(7);
+// console.log(8);

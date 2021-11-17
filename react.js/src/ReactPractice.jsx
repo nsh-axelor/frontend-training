@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function ReactPractice() {
 
@@ -12,6 +12,7 @@ function ReactPractice() {
     }
     let ComponentCount = 1 
     let imageUrl = "data:image/png;base64,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"
+    const todos = ['Complete React Tutorial','Make Portfolio Form with validation using React','Make Portfolio website using React','Make calender using React']
     return (
         <div>
             <h1>This File is Created for React.JS Practice</h1>
@@ -22,12 +23,24 @@ function ReactPractice() {
             <img src={imageUrl} alt="Logo"/>
             <hr />
 
-            {/* Components and Props Example */}
+            {/* Components and Props and Events Example*/}
             <ComponentExample name="Nandit" count = {ComponentCount}/>
             <ComponentExample name="Shail" count = {++ComponentCount}/>
 
 
+            {/* State and Components life-cycle Example */}
+            <Clock />
+            <hr/>
 
+            {/* List and Keys Example */}
+            <h2>Todo's for next 5 days</h2>
+            <ul style={{listStyle:'none'}}>
+                {
+                    todos.map((todo,index) => {
+                        return (<li key={index}>{todo}</li>)
+                    })
+                }
+            </ul>
         </div>
     )
 
@@ -39,13 +52,63 @@ export default ReactPractice
 
 
 
+// Functional Components Example
+function ComponentExample(props) {  
 
-function ComponentExample(props) {
+    const [color, setColor] = useState({color:'red'})
+
+    const handleClick = (e) => {
+        if(color.color == 'red'){
+            setColor({color:'blue'})
+        }else{
+            setColor({color:'red'})
+        }
+    }
     return(
-        <div style={{color:'red'}}>
+        <div style={color}>
             <h3>Hello {props.name} This is Component Example</h3>
             <h4>Component Example -- {props.count}</h4>
+            <button onClick={handleClick}>Convert {color.color == 'red' ? 'Blue' : 'Red'}</button>
             <hr />
         </div>
     )
+}
+
+
+
+// Class Components with state
+class Clock extends React.Component{
+
+    constructor(props){
+        super(props)
+        this.state = {
+            counter : 0
+        }
+    }
+
+    componentDidMount(){
+        this.counterID = setInterval(() => {
+            this.increamentCounter()
+        },1000)
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.counterID)
+    }
+
+    increamentCounter() {
+        let iCounter = this.state.counter;
+        this.setState({
+            counter : ++iCounter
+        })
+    }
+
+    render(){
+        return(
+            <div>
+                <h3>Automatic Counter</h3>
+                <p>{this.state.counter}</p>
+            </div>
+        )
+    }
 }

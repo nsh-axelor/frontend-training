@@ -41,6 +41,9 @@ function ReactPractice() {
                     })
                 }
             </ul>
+
+            <hr />
+            <Ancestor />
         </div>
     )
 
@@ -112,3 +115,85 @@ class Clock extends React.Component{
         )
     }
 }
+
+
+
+
+
+
+
+// ****************************** Lifting Up State Example Components ******************************
+
+
+// Input's Commons closest ancestor Component
+class Ancestor extends React.Component {
+
+    constructor(props){
+        super(props)
+        this.state = {
+            value: ''
+        }
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange(value){
+        this.setState({
+            value:value
+        })
+        console.log(this.state.value);
+    }
+
+    render(){
+        return(
+            <div>
+             <h2>Lifting up state example</h2>
+                <Input 
+                    value={this.state.value} 
+                    handleValueChange={this.handleChange} />
+                <Input 
+                    value={this.state.value} 
+                    handleValueChange={this.handleChange} />
+            </div>
+        )
+    }
+}
+
+// Input Component
+function Input(props){
+    
+    let {value,handleValueChange} = props 
+
+    const handleChange = (e) =>{
+        handleValueChange(e.target.value)
+    }
+
+    return(
+        <div>
+            <label>Enter value here</label>
+            <br/>
+            <input 
+            type="text" 
+            placeholder={"Enter Value Here"} 
+            onChange={handleChange}
+            value={value}
+            />
+        </div>
+    )
+
+}
+
+
+// ****************************** Lifting Up State Example Components ******************************
+
+
+
+
+
+
+
+
+
+
+
+
+

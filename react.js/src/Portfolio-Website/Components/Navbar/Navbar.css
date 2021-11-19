@@ -1,0 +1,40 @@
+.navbar {
+  margin: 0;
+  background-color: darkturquoise;
+  height: 150px;
+  color: white;
+  text-transform: uppercase;
+}
+.navbar-content {
+  padding-top: 55px;
+}
+.name {
+  display: inline;
+  font-size: 3rem;
+  padding-left: 90px;
+}
+
+.name > a {
+  color: white;
+}
+ul {
+  float: right;
+  color: white;
+}
+a {
+  text-decoration: none;
+}
+li {
+  padding: 40px;
+  list-style: none;
+  display: inline;
+  font-size: 2rem;
+}
+
+li > a {
+  color: white;
+}
+
+ul a:hover {
+  color: red;
+}

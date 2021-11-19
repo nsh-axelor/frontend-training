@@ -1,0 +1,30 @@
+.bodyComponent {
+  margin: 50px auto;
+  width: 80%;
+  text-align: center;
+}
+.image {
+  border: 3px solid red;
+  margin: 10px;
+  border-radius: 100%;
+}
+
+/* Common between about,contact,projects section */
+.about,
+.projects {
+  width: 80%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.introducton > p {
+  margin-top: 25px;
+  color: grey;
+}
+.heading {
+  font-size: 4rem;
+}
+.content > p {
+  margin-top: 25px;
+  color: grey;
+}

@@ -22,3 +22,12 @@ td:nth-child(6){
 .calendarComponent{
     height: 240px;
 }
+
+td:hover{
+    background-color: green;
+    color: white;
+}
+
+td[empty="true"]:hover{
+    background-color: white;
+}

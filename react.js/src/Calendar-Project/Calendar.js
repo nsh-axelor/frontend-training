@@ -10,8 +10,8 @@ const Calendar = () => {
     console.log(year);
     return (
         <div>
-            <TimeInput year = {year} month={month} setMonth={setMonth} setYear={setYear}/>
-            <CalendarComponent />
+            <TimeInput year={year} month={month} setMonth={setMonth} setYear={setYear} />
+            <CalendarComponent year={year} month={month} />
             This is calendar Project
         </div>
     )

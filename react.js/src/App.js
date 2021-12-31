@@ -2,6 +2,7 @@ import './App.css';
 import Form from './Form-Project/Form';
 import ReactPractice from './ReactPractice.jsx'
 import PortfolioWebsite from "./Portfolio-Website/PortfolioWebsite.jsx"
+import Calendar from './Calendar-Project/Calendar';
 function App() {
   return (
     <div className="App">
@@ -13,7 +14,10 @@ function App() {
       {/* <Form /> */}
 
       {/* UnComment PortfolioWebsite Tag for reviewing Portfolio_Webiste-Project */}
-      <PortfolioWebsite />
+      {/* <PortfolioWebsite /> */}
+
+      {/* UnComment Calendar Tag for reviewing Calendar-Project */}
+      <Calendar />
 
     </div>
   );

@@ -6,11 +6,9 @@ const Calendar = () => {
 
     const [month, setMonth] = useState(today.getMonth())
     const [year, setYear] = useState(today.getFullYear())
-
-    console.log(month);
+    console.log(year);
     return (
         <div>
-
             <TimeInput year = {year} month={month} setMonth={setMonth} setYear={setYear}/>
             This is calendar Project
         </div>

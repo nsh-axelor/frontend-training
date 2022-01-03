@@ -37,7 +37,6 @@ const TimeInput = ({ month, year, setMonth, setYear }) => {
 
     })
 
-    // console.log(<input className="input" onChange= {handleYearChange} type="number" value={year} name="year" id="year_input" required></input>);
     return (
         <div className='timeInput'>
             <select className="input" onChange={handleMonthChage} name="" id="month_select">

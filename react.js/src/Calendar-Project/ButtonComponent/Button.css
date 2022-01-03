@@ -1,0 +1,22 @@
+.btn{
+    height: 50px;
+    margin: 10px 30px;
+    outline: none;
+    border: 1px solid green;
+    background-color: white;
+    font-size: 1.5rem;
+    width: 150px;
+    color: green;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    transition: 0.5s;
+}
+
+.btn:hover{
+    background-color: green;
+    color: white;
+    border: 1px solid white;
+}
+.diabled{
+    color: grey;
+}

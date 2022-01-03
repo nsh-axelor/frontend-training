@@ -5,17 +5,17 @@ import "./CalendarComponent.css"
 
 const CalendarComponent = ({ month, year }) => {
 
+    // Array of weekdays
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
+    // Creating TH elemement for calendar header
     const days_th = []
-
-
     days.forEach((day) => {
         days_th.push(<th>{day}</th>)
     })
 
 
-    // This function will create calendar
+    // This function will complete calendar
     const createCalendar = (month, year) => {
 
         var day = 1
@@ -23,12 +23,15 @@ const CalendarComponent = ({ month, year }) => {
         var calendar_td = []
         const date = new Date(year, month);
         const daysInMonth = 32 - new Date(year, month, 32).getDate();
+        
+        // Filling empty spaces whenever month does not start with sunday
         if (date.getDay() != 0) {
             for (var i = 0; i < date.getDay(); i++) {
                 calendar_td.push(<td empty = "true"></td>)
             }
         }
 
+        // Filling dates with respect to their weekday
         while (day <= daysInMonth) {
             if (calendar_td.length === 7) {
                 calendar_tr.push(<tr>{calendar_td}</tr>)
@@ -42,8 +45,12 @@ const CalendarComponent = ({ month, year }) => {
 
 
         }
+        
         return calendar_tr
     }
+
+
+
     return (
         <div className='calendarComponent'>
             <table>

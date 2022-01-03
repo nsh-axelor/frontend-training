@@ -1,8 +1,19 @@
 import './App.css';
-import Form from './Form-Project/Form';
-import ReactPractice from './ReactPractice.jsx'
-import PortfolioWebsite from "./Portfolio-Website/PortfolioWebsite.jsx"
-import Calendar from './Calendar-Project/Calendar';
+
+// UnComment below given line for reviewing React Practice file
+// import ReactPractice from './ReactPractice.jsx'
+
+// UnComment below given line for reviewing Form-Project
+// import Form from './Form-Project/Form';
+
+// UnComment below given line for reviewing Portfolio_Webiste-Project
+// import PortfolioWebsite from "./Portfolio-Website/PortfolioWebsite.jsx"
+
+// UnComment below given line for reviewing Calendar-Project
+// import Calendar from './Calendar-Project/Calendar';
+
+
+
 function App() {
   return (
     <div className="App">
@@ -17,7 +28,7 @@ function App() {
       {/* <PortfolioWebsite /> */}
 
       {/* UnComment Calendar Tag for reviewing Calendar-Project */}
-      <Calendar />
+      {/* <Calendar /> */}
 
     </div>
   );

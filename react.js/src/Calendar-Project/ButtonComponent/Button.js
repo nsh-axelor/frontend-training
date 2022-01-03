@@ -1,8 +1,8 @@
 import React from 'react'
 import './Button.css'
-const Button = () => {
+const Button = ({text,handleOnClick}) => {
     return(
-        <button className='btn'>Prev</button>
+        <button className="btn" onClick={handleOnClick}>{text}</button>
     )
 }
 

@@ -8,13 +8,37 @@ const Calendar = () => {
 
     const [month, setMonth] = useState(today.getMonth())
     const [year, setYear] = useState(today.getFullYear())
-    console.log(year);
+
+
+
+    const increaseMonthByOne = () => {
+        if(month === 11){
+            setMonth(0)
+            setYear(year + 1)
+        }
+        else{
+            setMonth(month + 1)
+        }
+    }
+
+    const decreaseMonthByOne = () => {
+        if(month ===  0){
+            setMonth(11)
+            setYear(year - 1)
+
+        }
+        else{
+            setMonth(month - 1)
+        }
+    }
+
     return (
         <div>
             <TimeInput year={year} month={month} setMonth={setMonth} setYear={setYear} />
             <CalendarComponent year={year} month={month} />
-            <Button />
-            This is calendar Project
+            <Button text = "Prev" handleOnClick = {decreaseMonthByOne}/>
+            <Button text = "Next" handleOnClick = {increaseMonthByOne}/>
+        
         </div>
     )
 }

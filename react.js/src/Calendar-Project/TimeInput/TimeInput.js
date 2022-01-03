@@ -19,12 +19,12 @@ const TimeInput = ({ month, year, setMonth, setYear }) => {
     const keys = Object.keys(months)
 
     const handleMonthChage = (e) => {
-        setMonth(e.target.value)
+        setMonth(Number(e.target.value))
     }
 
 
     const handleYearChange = (e) => {
-        setYear(e.target.value)
+        setYear(Number(e.target.value))
     }
 
     const options = []
@@ -41,18 +41,6 @@ const TimeInput = ({ month, year, setMonth, setYear }) => {
     return (
         <div className='timeInput'>
             <select className="input" onChange={handleMonthChage} name="" id="month_select">
-                {/* <option value="0">January</option>
-                <option value="1">February</option>
-                <option value="2">March</option>
-                <option value="3">April</option>
-                <option value="4">May</option>
-                <option value="5">June</option>
-                <option value="6">July</option>
-                <option value="7">August</option>
-                <option value="8">September</option>
-                <option value="9">October</option>
-                <option value="10">November</option>
-                <option value="11">December</option> */}
                 {options}
             </select>
             <input className="input" onChange={handleYearChange} type="number" value={year} name="year" id="year_input" required></input>

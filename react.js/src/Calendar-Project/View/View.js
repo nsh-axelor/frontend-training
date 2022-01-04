@@ -18,15 +18,15 @@ const CalendarComponent = ({ month, year }) => {
     // This function will complete calendar
     const createCalendar = (month, year) => {
 
-        var day = 1
+        let day = 1
         const calendar_tr = []
-        var calendar_td = []
+        let calendar_td = []
         const date = new Date(year, month);
         const daysInMonth = 32 - new Date(year, month, 32).getDate();
         
         // Filling empty spaces whenever month does not start with sunday
-        if (date.getDay() != 0) {
-            for (var i = 0; i < date.getDay(); i++) {
+        if (date.getDay() !== 0) {
+            for (let i = 0; i < date.getDay(); i++) {
                 calendar_td.push(<td empty = "true"></td>)
             }
         }

@@ -19,7 +19,6 @@ function Form() {
           !(arrayPassword.length >= 8)
         ) {
             e.preventDefault()
-            console.log("Hello");
             alert("Password should have atleast 8 character and it should include atleast 1 digit");
         }
     }
@@ -49,7 +48,7 @@ function Form() {
                         placeholder="Enter Your Password Here"
                         id="password"
                         required
-                        onChange={event => setPassword(event.target.value)}            cd            
+                        onChange={event => setPassword(event.target.value)}            
                     />
                 </div>
 

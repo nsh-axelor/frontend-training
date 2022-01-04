@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import "./TimeInput.css"
 
 const TimeInput = ({ month, year, setMonth, setYear }) => {
@@ -24,12 +24,7 @@ const TimeInput = ({ month, year, setMonth, setYear }) => {
     const options = []
 
     keys.forEach((key) => {
-        if (key == month) {
-            options.push(<option value={key} selected key={key}>{months[key]}</option>)
-        } else {
-            options.push(<option value={key} key={key}>{months[key]}</option>)
-        }
-
+        options.push(<option value={key} key={key}>{months[key]}</option>)
     })
 
     // Handling Month Change
@@ -46,7 +41,7 @@ const TimeInput = ({ month, year, setMonth, setYear }) => {
 
     return (
         <div className='timeInput'>
-            <select className="input" onChange={handleMonthChage} name="" id="month_select">
+            <select value={month} className="input" onChange={handleMonthChage} name="" id="month_select">
                 {options}
             </select>
             <input className="input" onChange={handleYearChange} type="number" value={year} name="year" id="year_input" required></input>

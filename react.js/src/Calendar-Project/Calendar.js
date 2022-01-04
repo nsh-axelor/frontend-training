@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Button from './ButtonComponent/Button';
-import CalendarComponent from './CalendarComponent/CalendarComponent';
-import TimeInput from './TimeInput/TimeInput';
+import Button from './Button'
+import CalendarComponent from './View';
+import TimeInput from './TimeInput';
 
 const Calendar = () => {
     const today = new Date();

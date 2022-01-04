@@ -1,7 +1,7 @@
 import React from 'react'
-import Body from './Components/BodyComponent/Body'
-import Footer from './Components/Footer/Footer'
-import Navbar from './Components/Navbar/Navbar'
+import Body from './Components/Body'
+import Footer from './Components/Footer'
+import Navbar from './Components/Navbar'
 import './PortfolioWebsite.css'
 function PortfolioWebsite() {
     return (

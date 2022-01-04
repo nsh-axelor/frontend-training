@@ -1,19 +1,10 @@
 import React from 'react';
 import "./View.css"
 
-
+// Array of weekdays
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
 const CalendarComponent = ({ month, year }) => {
-
-    // Array of weekdays
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-
-    // Creating TH elemement for calendar header
-    const days_th = []
-    days.forEach((day) => {
-        days_th.push(<th>{day}</th>)
-    })
-
 
     // This function will complete calendar
     const createCalendar = (month, year) => {
@@ -27,23 +18,21 @@ const CalendarComponent = ({ month, year }) => {
         // Filling empty spaces whenever month does not start with sunday
         if (date.getDay() !== 0) {
             for (let i = 0; i < date.getDay(); i++) {
-                calendar_td.push(<td empty = "true"></td>)
+                calendar_td.push(<td empty = "true" key={"empty"+i}></td>)
             }
         }
 
         // Filling dates with respect to their weekday
         while (day <= daysInMonth) {
             if (calendar_td.length === 7) {
-                calendar_tr.push(<tr>{calendar_td}</tr>)
+                calendar_tr.push(<tr key={day}>{calendar_td}</tr>)
                 calendar_td = []
             }
-            calendar_td.push(<td>{day}</td>)
+            calendar_td.push(<td key = {day}>{day}</td>)
             if (day === daysInMonth) {
-                calendar_tr.push(<tr>{calendar_td}</tr>)
+                calendar_tr.push(<tr key = {day}>{calendar_td}</tr>)
             }
             day++
-
-
         }
         
         return calendar_tr
@@ -56,7 +45,11 @@ const CalendarComponent = ({ month, year }) => {
             <table>
                 <thead>
                     <tr>
-                        {days_th}
+                        {
+                            days.map((day) => (
+                                (<th key={day}>{day}</th>)
+                            ))
+                        }
                     </tr>
 
                 </thead>

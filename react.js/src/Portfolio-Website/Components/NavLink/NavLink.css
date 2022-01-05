@@ -1,0 +1,17 @@
+a {
+    text-decoration: none;
+}
+li {
+  padding: 40px;
+  list-style: none;
+  display: inline;
+  font-size: 2rem;
+}
+
+li > a {
+  color: white;
+}
+
+ul a:hover {
+  color: red;
+}

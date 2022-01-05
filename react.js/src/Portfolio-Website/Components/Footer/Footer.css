@@ -11,11 +11,7 @@
     justify-content: space-evenly;
     align-items: center;
 }
-i{
-    font-size: 40px;
-    margin: 20px;
-    color: white;
-}
+
 
 .last-note{
     text-align: center;
@@ -24,6 +20,3 @@ i{
     font-size: 20px;
 }
 
-i:hover{
-    color: black;
-}

@@ -34,7 +34,6 @@ const CalendarComponent = ({ month, year }) => {
             }
             day++
         }
-        
         return calendar_tr
     }
 
@@ -51,7 +50,6 @@ const CalendarComponent = ({ month, year }) => {
                             ))
                         }
                     </tr>
-
                 </thead>
                 <tbody>
                     {(year >= 1970) && (year <= 2050) && (createCalendar(month, year))}

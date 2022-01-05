@@ -12,7 +12,7 @@ td,th{
 }
 
 td:nth-child(1){
-    color: green;
+    color: red;
 }
 
 td:nth-child(6){

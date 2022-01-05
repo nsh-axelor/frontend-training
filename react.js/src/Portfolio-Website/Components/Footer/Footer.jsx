@@ -1,17 +1,36 @@
 import React from 'react'
 import './Footer.css'
+import SocialLink from '../SocialLink'
+const socialHandles = [
+    {
+        link : "https://www.linkedin.com/in/nandit-shah/",
+        classes : "fab fa-linkedin-in"
+    },
+    {
+        link : "https://nanditshah105.medium.com/",
+        classes : "fab fa-medium-m"
+    },
+    {
+        link : "https://github.com/nsh-axelor/",
+        classes : "fab fa-github"
+    },
+    {
+        link : "https://www.instagram.com/",
+        classes : "fab fa-instagram"
+    }
+]
 function Footer() {
     return (
         <div className='footer'>
             <div className='contact-handles'>
-                <a href="https://www.linkedin.com/in/nandit-shah/" target="_blank" rel="noreferrer"><i className="fab fa-linkedin-in"></i></a>
-                <a href="https://nanditshah105.medium.com/" target="_blank" rel="noreferrer"><i className="fab fa-medium-m"></i></a>
-                <a href="https://github.com/nsh-axelor/" target="_blank" rel="noreferrer"><i className="fab fa-github"></i></a>
-                <a href="https://www.instagram.com/" target="_blank" rel="noreferrer"><i className="fab fa-instagram"></i></a>
+                {
+                    socialHandles.map((socialHandle) => (
+                        <SocialLink link={socialHandle.link} classes = {socialHandle.classes}/>
+                    ))
+                }
             </div>
             <p className='last-note'>Made With ❤️ By Nandit</p>
         </div>
-
     )
 }
 

@@ -25,10 +25,10 @@ const CalendarComponent = ({ month, year }) => {
         // Filling dates with respect to their weekday
         while (day <= daysInMonth) {
             if (calendar_td.length === 7) {
-                calendar_tr.push(<tr key={day}>{calendar_td}</tr>)
+                calendar_tr.push(<tr key = {month+day+year}>{calendar_td}</tr>)
                 calendar_td = []
             }
-            calendar_td.push(<td key = {day}>{day}</td>)
+            calendar_td.push(<td key = {month+day+year}>{day}</td>)
             if (day === daysInMonth) {
                 calendar_tr.push(<tr key = {day}>{calendar_td}</tr>)
             }

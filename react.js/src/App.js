@@ -10,7 +10,7 @@ import Form from './Form-Project';
 // import PortfolioWebsite from "./Portfolio-Website"
 
 // UnComment below given line for reviewing Calendar-Project
-// import Calendar from './Calendar-Project';
+import Calendar from './Calendar-Project';
 
 
 
@@ -22,13 +22,13 @@ function App() {
       {/* <ReactPractice />    */}
 
       {/* UnComment Form Tag for reviewing Form-Project */}
-      <Form />
+      {/* <Form /> */}
 
       {/* UnComment PortfolioWebsite Tag for reviewing Portfolio_Webiste-Project */}
       {/* <PortfolioWebsite /> */}
 
       {/* UnComment Calendar Tag for reviewing Calendar-Project */}
-      {/* <Calendar /> */}
+      <Calendar />
 
     </div>
   );

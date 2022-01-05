@@ -2,11 +2,38 @@ import React, { useState } from 'react'
 import "./Form.css"
 function Form() {
 
+    const [userName,setUserName] = useState()
     const [password, setPassword] = useState('')
+    const [cityOfEmployeement,setCityOfEmployeement] = useState()
+    const [webServer,setWebServer] = useState()
+    const [role,setRole] = useState()
+    const [checkbox,setCheckbox] = useState([])
+
+
+
+
+
+    // For handling radio button
+    const handleOnClickRole = (event) => {
+        setRole(event.target.value)
+        console.log(checkbox[0]);
+    }
+
+
+    // For Handling checkbox value 
+    const handleOnClickCheckbox = (event) => {
+        let clickedCheckboxValue = event.target.value;
+        if(checkbox.indexOf(clickedCheckboxValue) !== -1){
+            const newCheckBox = checkbox.filter((value) => value !== clickedCheckboxValue)
+            setCheckbox(newCheckBox) 
+        }else{
+            setCheckbox([...checkbox,clickedCheckboxValue])
+        }
+    }
+
 
     // This method is used for Validation of Password filed
     const validateForm = (e) =>  {
-
         // Helper Function
         function isAnyNumber(char) {
           var numArray = Array.from("0123456789");
@@ -36,6 +63,7 @@ function Form() {
                         placeholder="Enter Your Username Here"
                         id="username"
                         required
+                        onChange={(event) => setUserName(event.target.value)}
                     />
                 </div>
 
@@ -60,6 +88,7 @@ function Form() {
                             type="text"
                             name="city"
                             placeholder="Enter Your City Of Employeement"
+                            onChange={(event) => setCityOfEmployeement(event.target.value)}
                         />
                     </div>
                 </div>
@@ -67,11 +96,11 @@ function Form() {
                 {/*Select Server Input */}
                 <div className="input">
                     <div className="label">Web Server :</div>
-                    <select name="server" defaultValue='default'>
+                    <select name="server" defaultValue='default' onChange={(event) => setWebServer(event.target.value)}>
                         <option value="default" disabled>Choose Your Server</option>
                         <option value="server1">Server 1</option>
-                        <option value="server3">Server 2</option>
-                        <option value="server4">Server 3</option>
+                        <option value="server2">Server 2</option>
+                        <option value="server3">Server 3</option>
                         <option value="server4">Server 4</option>
                     </select>
                 </div>
@@ -81,16 +110,16 @@ function Form() {
                 <div className="input">
                     <div className="label" htmlFor="">Please Specify Your Role :</div>
                     <div className="radiobuttons">
-                        <input type="radio" name="role" value="Admin" />
+                        <input type="radio" name="role" onClick={handleOnClickRole} value="Admin" />
                         <label htmlFor="">Admin</label>
                         <br />
-                        <input type="radio" name="role" value="Engineer" />
+                        <input type="radio" name="role" onClick={handleOnClickRole} value="Engineer" />
                         <label htmlFor="">Engineer</label>
                         <br />
-                        <input type="radio" name="role" value="Manager" />
+                        <input type="radio" name="role" onClick={handleOnClickRole} value="Manager" />
                         <label htmlFor="">Manager</label>
                         <br />
-                        <input type="radio" name="role" value="Admin" />
+                        <input type="radio" name="role" onClick={handleOnClickRole} value="Admin" />
                         <label htmlFor="">Admin</label>
                     </div>
                 </div>
@@ -99,13 +128,13 @@ function Form() {
                 <div className="input">
                     <div className="label">Single Sign on to the following :</div>
                     <div className="checkbox">
-                        <input type="checkbox" name="signon" value="Mail" />
+                        <input type="checkbox" name="signon" onClick={handleOnClickCheckbox} value="Mail" />
                         <label>Mail</label>
                         <br />
-                        <input type="checkbox" name="signon" value="Payroll" />
+                        <input type="checkbox" name="signon" onClick={handleOnClickCheckbox} value="Payroll" />
                         <label>Payroll</label>
                         <br />
-                        <input type="checkbox" name="signon" value="Self-Service" />
+                        <input type="checkbox" name="signon" onClick={handleOnClickCheckbox} value="Self-Service" />
                         <label>Self-Service</label>
                     </div>
                 </div>

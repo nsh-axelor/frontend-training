@@ -3,10 +3,6 @@
   align-items: center;
   margin-bottom: 20px;
 }
-.label {
-  width: 115px;
-  margin-right: 20px;
-}
 input,
 select {
   margin: 5px;

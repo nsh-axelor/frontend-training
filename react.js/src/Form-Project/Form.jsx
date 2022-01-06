@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Form.css";
+import InputLabel from "./InputLabel";
 
 const servers = ["Server 1", "Server 2", "Server 3", "Server 4"];
 const roles = ["Admin", "Engineer", "Manager", "Guest"];
@@ -9,52 +10,55 @@ function Form() {
   const [formDetails, setFormDetails] = useState({
     userName: "",
     password: "",
-    cityOfEmployeement: "",
-    webServer: "",
+    city: "",
+    server: "",
     role: "",
     checkbox: [],
   });
 
   const handleFormOnChange = (e) => {
-    switch (e.target.id) {
-      case "userName":
-        setFormDetails({ ...formDetails, userName: e.target.value });
-        break;
-      case "password":
-        setFormDetails({ ...formDetails, password: e.target.value });
-        break;
-      case "city":
-        setFormDetails({ ...formDetails, cityOfEmployeement: e.target.value });
-        break;
-      case "server":
-        setFormDetails({ ...formDetails, webServer: e.target.value });
-        break;
-      default:
+    if (Array.isArray(formDetails[e.target.name])) {
+      let clickedCheckboxValue = e.target.value;
+      let currentCheckBox = formDetails.checkbox;
+      if (currentCheckBox.indexOf(clickedCheckboxValue) !== -1) {
+        const newCheckBox = currentCheckBox.filter(
+          (value) => value !== clickedCheckboxValue
+        );
+        setFormDetails({ ...formDetails, checkbox: newCheckBox });
+      } else {
+        setFormDetails({
+          ...formDetails,
+          checkbox: [...currentCheckBox, clickedCheckboxValue],
+        });
+      }
+    } else {
+      formDetails[e.target.name] = e.target.value;
     }
   };
 
   // For handling radio button
-  const handleOnClickRole = (event) => {
-    setFormDetails({ ...formDetails, role: event.target.value });
-  };
+  // const handleOnClickRole = (event) => {
+  //   setFormDetails({ ...formDetails, role: event.target.value });
+  //   console.log(formDetails);
+  // };
 
   // For Handling checkbox value
-  const handleOnClickCheckbox = (event) => {
-    let clickedCheckboxValue = event.target.value;
-    let currentCheckBox = formDetails.checkbox;
+  // const handleOnClickCheckbox = (event) => {
+  //   let clickedCheckboxValue = event.target.value;
+  //   let currentCheckBox = formDetails.checkbox;
 
-    if (currentCheckBox.indexOf(clickedCheckboxValue) !== -1) {
-      const newCheckBox = currentCheckBox.filter(
-        (value) => value !== clickedCheckboxValue
-      );
-      setFormDetails({ ...formDetails, checkbox: newCheckBox });
-    } else {
-      setFormDetails({
-        ...formDetails,
-        checkbox: [...currentCheckBox, clickedCheckboxValue],
-      });
-    }
-  };
+  //   if (currentCheckBox.indexOf(clickedCheckboxValue) !== -1) {
+  //     const newCheckBox = currentCheckBox.filter(
+  //       (value) => value !== clickedCheckboxValue
+  //     );
+  //     setFormDetails({ ...formDetails, checkbox: newCheckBox });
+  //   } else {
+  //     setFormDetails({
+  //       ...formDetails,
+  //       checkbox: [...currentCheckBox, clickedCheckboxValue],
+  //     });
+  //   }
+  // };
 
   // This method is used for Validation of Password filed
   const validateForm = (e) => {
@@ -77,62 +81,47 @@ function Form() {
   return (
     <div>
       <h1>Projec-1 Form</h1>
-      <form onSubmit={validateForm}>
+      <form onSubmit={validateForm} onChange={handleFormOnChange}>
         {/* Username Input */}
         <div className="input">
-          <div className="label" htmlFor="username">
-            Username :
-          </div>
+          <InputLabel label="Username : " />
           <input
             type="text"
-            name="username"
+            name="userName"
             placeholder="Enter Your Username Here"
-            id="userName"
             required
-            onChange={handleFormOnChange}
           />
         </div>
 
         {/* Password Input */}
         <div className="input">
-          <div className="label" htmlFor="password">
-            Password :
-          </div>
+          <InputLabel label=" Password :" />
           <input
             type="password"
             name="password"
             placeholder="Enter Your Password Here"
-            id="password"
             required
-            onChange={handleFormOnChange}
           />
         </div>
 
         {/* Employeement Input */}
         <div className="input">
-          <div className="label" htmlFor="city">
-            City Of Employeement :
-          </div>
+          <InputLabel label=" City Of Employeement :" />
+
           <div>
             <input
               type="text"
               name="city"
-              id="city"
               placeholder="Enter Your City Of Employeement"
-              onChange={handleFormOnChange}
             />
           </div>
         </div>
 
         {/*Select Server Input */}
         <div className="input">
-          <div className="label">Web Server :</div>
-          <select
-            id="server"
-            name="server"
-            defaultValue="default"
-            onChange={handleFormOnChange}
-          >
+          <InputLabel label="Web Server :" />
+
+          <select name="server" defaultValue="default">
             <option value="default" disabled>
               Choose Your Server
             </option>
@@ -146,18 +135,12 @@ function Form() {
 
         {/* Role Radio Button Input */}
         <div className="input">
-          <div className="label" htmlFor="">
-            Please Specify Your Role :
-          </div>
+          <InputLabel label="Please Specify Your Role :" />
+
           <div className="radiobuttons">
             {roles.map((role) => (
               <div key={role}>
-                <input
-                  type="radio"
-                  name="role"
-                  onClick={handleOnClickRole}
-                  value={role}
-                />
+                <input type="radio" name="role" value={role} />
                 <label htmlFor="">{role}</label>
                 <br />
               </div>
@@ -167,16 +150,11 @@ function Form() {
 
         {/*Signon Checkbox Input */}
         <div className="input">
-          <div className="label">Single Sign on to the following :</div>
+          <InputLabel label="Single Sign on to the following :" />
           <div className="checkbox">
             {checkboxes.map((checkbox) => (
               <div key={checkbox}>
-                <input
-                  type="checkbox"
-                  name="signon"
-                  onClick={handleOnClickCheckbox}
-                  value={checkbox}
-                />
+                <input type="checkbox" name="checkbox" value={checkbox} />
                 <label>{checkbox}</label>
                 <br />
               </div>
@@ -186,7 +164,7 @@ function Form() {
 
         {/* Submit And Reset Input */}
         <div className="input">
-          <div className="label"></div>
+          <InputLabel label="" />
           <input type="submit" value="Login" />
           <input type="reset" value="Reset" />
         </div>

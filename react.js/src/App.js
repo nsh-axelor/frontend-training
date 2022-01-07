@@ -4,7 +4,7 @@ import "./App.css";
 // import ReactPractice from './ReactPractice.jsx'
 
 // UnComment below given line for reviewing Form-Project
-// import Form from './Form-Project';
+import Form from './Form-Project';
 
 // UnComment below given line for reviewing Portfolio_Webiste-Project
 // import PortfolioWebsite from "./Portfolio-Website"
@@ -19,7 +19,7 @@ function App() {
       {/* <ReactPractice />    */}
 
       {/* UnComment Form Tag for reviewing Form-Project */}
-      {/* <Form /> */}
+      <Form />
 
       {/* UnComment PortfolioWebsite Tag for reviewing Portfolio_Webiste-Project */}
       {/* <PortfolioWebsite /> */}

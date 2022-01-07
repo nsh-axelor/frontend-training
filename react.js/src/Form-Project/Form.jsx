@@ -16,7 +16,7 @@ function Form() {
     checkbox: [],
   });
 
-  const handleFormOnChange = (e) => {
+  const handleFormInput = (e) => {
     if (Array.isArray(formDetails[e.target.name])) {
       let clickedCheckboxValue = e.target.value;
       let currentCheckBox = formDetails.checkbox;
@@ -81,7 +81,7 @@ function Form() {
   return (
     <div>
       <h1>Projec-1 Form</h1>
-      <form onSubmit={validateForm} onChange={handleFormOnChange}>
+      <form onSubmit={validateForm}>
         {/* Username Input */}
         <div className="input">
           <InputLabel label="Username : " />
@@ -89,6 +89,7 @@ function Form() {
             type="text"
             name="userName"
             placeholder="Enter Your Username Here"
+            onChange={handleFormInput}
             required
           />
         </div>
@@ -100,6 +101,7 @@ function Form() {
             type="password"
             name="password"
             placeholder="Enter Your Password Here"
+            onChange={handleFormInput}
             required
           />
         </div>
@@ -113,6 +115,7 @@ function Form() {
               type="text"
               name="city"
               placeholder="Enter Your City Of Employeement"
+              onChange={handleFormInput}
             />
           </div>
         </div>
@@ -121,7 +124,7 @@ function Form() {
         <div className="input">
           <InputLabel label="Web Server :" />
 
-          <select name="server" defaultValue="default">
+          <select name="server" defaultValue="default" onChange={handleFormInput}>
             <option value="default" disabled>
               Choose Your Server
             </option>
@@ -140,7 +143,7 @@ function Form() {
           <div className="radiobuttons">
             {roles.map((role) => (
               <div key={role}>
-                <input type="radio" name="role" value={role} />
+                <input type="radio" name="role" value={role} onClick={handleFormInput} />
                 <label htmlFor="">{role}</label>
                 <br />
               </div>
@@ -154,7 +157,7 @@ function Form() {
           <div className="checkbox">
             {checkboxes.map((checkbox) => (
               <div key={checkbox}>
-                <input type="checkbox" name="checkbox" value={checkbox} />
+                <input type="checkbox" name="checkbox" value={checkbox} onClick={handleFormInput} />
                 <label>{checkbox}</label>
                 <br />
               </div>

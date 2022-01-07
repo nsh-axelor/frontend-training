@@ -36,7 +36,12 @@ function UncontrolledForm() {
     setChecked({...checked,[e.target.name]:[e.target.checked]})
   }
 
+
   const formDetails = useRef({})
+
+  const getInputRef = (e,name) => {
+    formDetails.current[name] = e
+  }
 
   // This method is used for Validation of Password filed
   // const validateForm = (e) => {
@@ -65,7 +70,7 @@ function UncontrolledForm() {
         console.log(formDetails.current.password.value)
         console.log(formDetails.current.city.value)
         console.log(formDetails.current.server.value)
-        console.log(formDetails.current.role.value)
+        // console.log(formDetails.current.role.value)
         console.log(formDetails.current.mail.value)
         console.log(formDetails.current.payRoll.value)
         console.log(formDetails.current.selfService.value)
@@ -77,7 +82,7 @@ function UncontrolledForm() {
           type="text"
           name="userName"
           placeholder="Enter Your Username Here"
-          inputRef = {(e) => formDetails.current['userName'] = e}
+          inputRef = {(e) => getInputRef(e,'userName')}
           // isRequired={true}
           classes={["input"]}
         />
@@ -88,7 +93,7 @@ function UncontrolledForm() {
           type="password"
           name="password"
           placeholder="Enter Your Password Here"
-          inputRef = {(e) => formDetails.current['password'] = e}
+          inputRef = {(e) => getInputRef(e,'password')}
           // isRequired={true}
           classes={["input"]}
         />
@@ -99,7 +104,7 @@ function UncontrolledForm() {
           type="text"
           name="city"
           placeholder="Enter Your City Of Employeement"
-          inputRef = {(e) => formDetails.current['city'] = e}
+          inputRef = {(e) => getInputRef(e,'city')}
           classes={["input"]}
         />
 
@@ -108,7 +113,7 @@ function UncontrolledForm() {
           label="Web Server :"
           name="server"
           defaultValue="default"
-          inputRef = {(e) => formDetails.current['server'] = e}
+          inputRef = {(e) => getInputRef(e,'server')}
           options={servers}
         />
 
@@ -140,7 +145,8 @@ function UncontrolledForm() {
                 name={checkbox.name}
                 value={checked[checkbox.name]}
                 handleClick={handleClick}
-                inputRef={(e) => formDetails.current[checkbox.name] = e}
+                // inputRef={(e) => formDetails.current[checkbox.name] = e}
+                inputRef = {(e) => getInputRef(e,checkbox.name)}
                 optionLabel={checkbox.label}
               />
             ))}

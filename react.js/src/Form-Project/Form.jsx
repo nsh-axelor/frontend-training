@@ -4,7 +4,20 @@ import InputLabel from "./InputLabel";
 
 const servers = ["Server 1", "Server 2", "Server 3", "Server 4"];
 const roles = ["Admin", "Engineer", "Manager", "Guest"];
-const checkboxes = ["Mail", "Payroll", "Self-service"];
+const checkboxes = [
+  {
+    name: "mail",
+    label: "Mail",
+  },
+  {
+    name: "payRoll",
+    label: "Payroll",
+  },
+  {
+    name: "selfService",
+    label: "Self-Service",
+  },
+];
 
 function Form() {
   const [formDetails, setFormDetails] = useState({
@@ -13,27 +26,23 @@ function Form() {
     city: "",
     server: "",
     role: "",
-    checkbox: [],
+    mail: false,
+    payRoll: false,
+    selfService: false,
   });
 
   const handleFormInput = (e) => {
-    if (Array.isArray(formDetails[e.target.name])) {
-      let clickedCheckboxValue = e.target.value;
-      let currentCheckBox = formDetails.checkbox;
-      if (currentCheckBox.indexOf(clickedCheckboxValue) !== -1) {
-        const newCheckBox = currentCheckBox.filter(
-          (value) => value !== clickedCheckboxValue
-        );
-        setFormDetails({ ...formDetails, checkbox: newCheckBox });
-      } else {
-        setFormDetails({
-          ...formDetails,
-          checkbox: [...currentCheckBox, clickedCheckboxValue],
-        });
-      }
-    } else {
-      formDetails[e.target.name] = e.target.value;
-    }
+    let name = e.target.name;
+    let value = e.target.value;
+    // if (e.target.type === "checkbox") {
+    //   formDetails[e.target.name] = !(formDetails[e.target.value])
+    // } else {
+    //   formDetails[e.target.name] = e.target.value;
+    // }
+
+    e.target.type === "checkbox"
+      ? (formDetails[name] = !formDetails[name])
+      : (formDetails[name] = value);
   };
 
   // For handling radio button
@@ -124,7 +133,11 @@ function Form() {
         <div className="input">
           <InputLabel label="Web Server :" />
 
-          <select name="server" defaultValue="default" onChange={handleFormInput}>
+          <select
+            name="server"
+            defaultValue="default"
+            onChange={handleFormInput}
+          >
             <option value="default" disabled>
               Choose Your Server
             </option>
@@ -143,7 +156,12 @@ function Form() {
           <div className="radiobuttons">
             {roles.map((role) => (
               <div key={role}>
-                <input type="radio" name="role" value={role} onClick={handleFormInput} />
+                <input
+                  type="radio"
+                  name="role"
+                  value={role}
+                  onChange={handleFormInput}
+                />
                 <label htmlFor="">{role}</label>
                 <br />
               </div>
@@ -156,9 +174,13 @@ function Form() {
           <InputLabel label="Single Sign on to the following :" />
           <div className="checkbox">
             {checkboxes.map((checkbox) => (
-              <div key={checkbox}>
-                <input type="checkbox" name="checkbox" value={checkbox} onClick={handleFormInput} />
-                <label>{checkbox}</label>
+              <div key={checkbox.name}>
+                <input
+                  type="checkbox"
+                  name={checkbox.name}
+                  onChange={handleFormInput}
+                />
+                <label>{checkbox.label}</label>
                 <br />
               </div>
             ))}

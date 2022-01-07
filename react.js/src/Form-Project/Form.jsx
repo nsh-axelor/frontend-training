@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Form.css";
 import Input from "./Input";
 import InputLabel from "./InputLabel";
+import Select from "./Select";
 
 const servers = ["Server 1", "Server 2", "Server 3", "Server 4"];
 const roles = ["Admin", "Engineer", "Manager", "Guest"];
@@ -32,12 +33,13 @@ function Form() {
     selfService: false,
   });
 
-  const handleFormInput = (e) => {
-    let { value, name } = e.target;
+  const handleInputChange = (e) => {
+    let { value, name, type, checked } = e.target;
 
-    e.target.type === "checkbox"
-      ? setFormDetails({ ...formDetails, [name]: !formDetails[name] })
-      : setFormDetails({ ...formDetails, [name]: value });
+    setFormDetails({
+      ...formDetails,
+      [name]: type === "checkbox" ? checked : value,
+    });
 
   };
 
@@ -69,7 +71,7 @@ function Form() {
           type="text"
           name="userName"
           placeholder="Enter Your Username Here"
-          handleChange={handleFormInput}
+          handleChange={handleInputChange}
           isRequired={true}
           classes={["input"]}
         />
@@ -80,7 +82,7 @@ function Form() {
           type="password"
           name="password"
           placeholder="Enter Your Password Here"
-          handleChange={handleFormInput}
+          handleChange={handleInputChange}
           isRequired={true}
           classes={["input"]}
         />
@@ -91,29 +93,18 @@ function Form() {
           type="text"
           name="city"
           placeholder="Enter Your City Of Employeement"
-          handleChange={handleFormInput}
+          handleChange={handleInputChange}
           classes={["input"]}
         />
 
         {/*Select Server Input */}
-        <div className="input">
-          <InputLabel label="Web Server :" />
-
-          <select
-            name="server"
-            defaultValue="default"
-            onChange={handleFormInput}
-          >
-            <option value="default" disabled>
-              Choose Your Server
-            </option>
-            {servers.map((server) => (
-              <option key={server} value={server}>
-                {server}
-              </option>
-            ))}
-          </select>
-        </div>
+        <Select
+          label="Web Server :"
+          name="server"
+          defaultValue="default"
+          handleChange={handleInputChange}
+          options={servers}
+        />
 
         {/* Role Radio Button Input */}
         <div className="input">
@@ -124,7 +115,7 @@ function Form() {
                 type="radio"
                 name="role"
                 value={role}
-                handleChange={handleFormInput}
+                handleChange={handleInputChange}
                 optionLabel={role}
                 key={role}
               />
@@ -141,7 +132,7 @@ function Form() {
                 key={checkbox.name}
                 type="checkbox"
                 name={checkbox.name}
-                handleChange={handleFormInput}
+                handleChange={handleInputChange}
                 optionLabel={checkbox.label}
               />
             ))}

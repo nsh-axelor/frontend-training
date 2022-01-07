@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Form.css";
+import Input from "./Input";
 import InputLabel from "./InputLabel";
 
 const servers = ["Server 1", "Server 2", "Server 3", "Server 4"];
@@ -32,42 +33,13 @@ function Form() {
   });
 
   const handleFormInput = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    // if (e.target.type === "checkbox") {
-    //   formDetails[e.target.name] = !(formDetails[e.target.value])
-    // } else {
-    //   formDetails[e.target.name] = e.target.value;
-    // }
+    let { value, name } = e.target;
 
     e.target.type === "checkbox"
-      ? (formDetails[name] = !formDetails[name])
-      : (formDetails[name] = value);
+      ? setFormDetails({ ...formDetails, [name]: !formDetails[name] })
+      : setFormDetails({ ...formDetails, [name]: value });
+
   };
-
-  // For handling radio button
-  // const handleOnClickRole = (event) => {
-  //   setFormDetails({ ...formDetails, role: event.target.value });
-  //   console.log(formDetails);
-  // };
-
-  // For Handling checkbox value
-  // const handleOnClickCheckbox = (event) => {
-  //   let clickedCheckboxValue = event.target.value;
-  //   let currentCheckBox = formDetails.checkbox;
-
-  //   if (currentCheckBox.indexOf(clickedCheckboxValue) !== -1) {
-  //     const newCheckBox = currentCheckBox.filter(
-  //       (value) => value !== clickedCheckboxValue
-  //     );
-  //     setFormDetails({ ...formDetails, checkbox: newCheckBox });
-  //   } else {
-  //     setFormDetails({
-  //       ...formDetails,
-  //       checkbox: [...currentCheckBox, clickedCheckboxValue],
-  //     });
-  //   }
-  // };
 
   // This method is used for Validation of Password filed
   const validateForm = (e) => {
@@ -92,42 +64,36 @@ function Form() {
       <h1>Projec-1 Form</h1>
       <form onSubmit={validateForm}>
         {/* Username Input */}
-        <div className="input">
-          <InputLabel label="Username : " />
-          <input
-            type="text"
-            name="userName"
-            placeholder="Enter Your Username Here"
-            onChange={handleFormInput}
-            required
-          />
-        </div>
+        <Input
+          label="Username : "
+          type="text"
+          name="userName"
+          placeholder="Enter Your Username Here"
+          handleChange={handleFormInput}
+          isRequired={true}
+          classes={["input"]}
+        />
 
         {/* Password Input */}
-        <div className="input">
-          <InputLabel label=" Password :" />
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter Your Password Here"
-            onChange={handleFormInput}
-            required
-          />
-        </div>
+        <Input
+          label="Password"
+          type="password"
+          name="password"
+          placeholder="Enter Your Password Here"
+          handleChange={handleFormInput}
+          isRequired={true}
+          classes={["input"]}
+        />
 
         {/* Employeement Input */}
-        <div className="input">
-          <InputLabel label=" City Of Employeement :" />
-
-          <div>
-            <input
-              type="text"
-              name="city"
-              placeholder="Enter Your City Of Employeement"
-              onChange={handleFormInput}
-            />
-          </div>
-        </div>
+        <Input
+          label=" City Of Employeement :"
+          type="text"
+          name="city"
+          placeholder="Enter Your City Of Employeement"
+          handleChange={handleFormInput}
+          classes={["input"]}
+        />
 
         {/*Select Server Input */}
         <div className="input">
@@ -152,37 +118,32 @@ function Form() {
         {/* Role Radio Button Input */}
         <div className="input">
           <InputLabel label="Please Specify Your Role :" />
-
           <div className="radiobuttons">
             {roles.map((role) => (
-              <div key={role}>
-                <input
-                  type="radio"
-                  name="role"
-                  value={role}
-                  onChange={handleFormInput}
-                />
-                <label htmlFor="">{role}</label>
-                <br />
-              </div>
+              <Input
+                type="radio"
+                name="role"
+                value={role}
+                handleChange={handleFormInput}
+                optionLabel={role}
+                key={role}
+              />
             ))}
           </div>
         </div>
 
-        {/*Signon Checkbox Input */}
         <div className="input">
           <InputLabel label="Single Sign on to the following :" />
           <div className="checkbox">
             {checkboxes.map((checkbox) => (
-              <div key={checkbox.name}>
-                <input
-                  type="checkbox"
-                  name={checkbox.name}
-                  onChange={handleFormInput}
-                />
-                <label>{checkbox.label}</label>
-                <br />
-              </div>
+              <Input
+                classes={[]}
+                key={checkbox.name}
+                type="checkbox"
+                name={checkbox.name}
+                handleChange={handleFormInput}
+                optionLabel={checkbox.label}
+              />
             ))}
           </div>
         </div>

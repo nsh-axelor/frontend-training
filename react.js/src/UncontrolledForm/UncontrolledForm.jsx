@@ -1,47 +1,28 @@
-import React, { useRef,useState } from "react";
+import React, { useRef } from "react";
 import "./UncontrolledForm.css";
 import Input from "./Input";
 import InputLabel from "./InputLabel";
 import Select from "./Select";
 
 const servers = ["Server 1", "Server 2", "Server 3", "Server 4"];
-const roles = ["Admin", "Engineer", "Manager", "Guest"];
-let checkboxes = [
-  {
-    name: "mail",
-    label: "Mail",
-    isChecked:false
-  },
-  {
-    name: "payRoll",
-    label: "Payroll",
-    isChecked:false
-  },
-  {
-    name: "selfService",
-    label: "Self-Service",
-    isChecked:false
-  },
+const roles = [
+  { name: "admin", label: "Admin" },
+  { name: "engineer", label: "Engineer" },
+  { name: "manager", label: "Manager" },
+  { name: "guest", label: "Guest" },
+];
+const checkboxes = [
+  { name: "mail", label: "Mail" },
+  { name: "payRoll", label: "Payroll" },
+  { name: "selfService", label: "Self-Service" },
 ];
 
 function UncontrolledForm() {
+  const formDetails = useRef({});
 
-  const [checked, setChecked] = useState({
-    mail:false,
-    payRoll:false,
-    selfService:false
-  })
-
-  const handleClick = (e) => {
-    setChecked({...checked,[e.target.name]:[e.target.checked]})
-  }
-
-
-  const formDetails = useRef({})
-
-  const getInputRef = (e,name) => {
-    formDetails.current[name] = e
-  }
+  const getInputRef = (e, name) => {
+    formDetails.current[name] = e;
+  };
 
   // This method is used for Validation of Password filed
   // const validateForm = (e) => {
@@ -64,25 +45,30 @@ function UncontrolledForm() {
   return (
     <div>
       <h1>Uncontrolled form</h1>
-      <form onSubmit={(e) => {
-        e.preventDefault()
-        console.log(formDetails.current.userName.value)
-        console.log(formDetails.current.password.value)
-        console.log(formDetails.current.city.value)
-        console.log(formDetails.current.server.value)
-        // console.log(formDetails.current.role.value)
-        console.log(formDetails.current.mail.value)
-        console.log(formDetails.current.payRoll.value)
-        console.log(formDetails.current.selfService.value)
-
-        }}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log(formDetails.current);
+          console.log(formDetails.current.userName.value);
+          console.log(formDetails.current.password.value);
+          console.log(formDetails.current.city.value);
+          console.log(formDetails.current.server.value);
+          console.log(formDetails.current.admin.checked);
+          console.log(formDetails.current.engineer.checked);
+          console.log(formDetails.current.manager.checked);
+          console.log(formDetails.current.guest.checked);
+          console.log(formDetails.current.mail.checked);
+          console.log(formDetails.current.payRoll.checked);
+          console.log(formDetails.current.selfService.checked);
+        }}
+      >
         {/* Username Input */}
         <Input
           label="Username : "
           type="text"
           name="userName"
           placeholder="Enter Your Username Here"
-          inputRef = {(e) => getInputRef(e,'userName')}
+          inputRef={(e) => getInputRef(e, "userName")}
           // isRequired={true}
           classes={["input"]}
         />
@@ -93,7 +79,7 @@ function UncontrolledForm() {
           type="password"
           name="password"
           placeholder="Enter Your Password Here"
-          inputRef = {(e) => getInputRef(e,'password')}
+          inputRef={(e) => getInputRef(e, "password")}
           // isRequired={true}
           classes={["input"]}
         />
@@ -104,7 +90,7 @@ function UncontrolledForm() {
           type="text"
           name="city"
           placeholder="Enter Your City Of Employeement"
-          inputRef = {(e) => getInputRef(e,'city')}
+          inputRef={(e) => getInputRef(e, "city")}
           classes={["input"]}
         />
 
@@ -113,7 +99,7 @@ function UncontrolledForm() {
           label="Web Server :"
           name="server"
           defaultValue="default"
-          inputRef = {(e) => getInputRef(e,'server')}
+          inputRef={(e) => getInputRef(e, "server")}
           options={servers}
         />
 
@@ -121,14 +107,14 @@ function UncontrolledForm() {
         <div className="input">
           <InputLabel label="Please Specify Your Role :" />
           <div className="radiobuttons">
-            {roles.map((role) => (
+            {roles.map(({ name, label }) => (
               <Input
                 type="radio"
                 name="role"
-                value={role}
-                // ref={(e) => formDetails.current['role'] = e}
-                optionLabel={role}
-                key={role}
+                value={name}
+                inputRef={(e) => getInputRef(e, name)}
+                optionLabel={label}
+                key={name}
               />
             ))}
           </div>
@@ -137,17 +123,14 @@ function UncontrolledForm() {
         <div className="input">
           <InputLabel label="Single Sign on to the following :" />
           <div className="checkbox">
-            {checkboxes.map((checkbox) => (
+            {checkboxes.map(({ name, label }) => (
               <Input
                 classes={[]}
-                key={checkbox.name}
+                key={name}
                 type="checkbox"
-                name={checkbox.name}
-                value={checked[checkbox.name]}
-                handleClick={handleClick}
-                // inputRef={(e) => formDetails.current[checkbox.name] = e}
-                inputRef = {(e) => getInputRef(e,checkbox.name)}
-                optionLabel={checkbox.label}
+                name={name}
+                inputRef={(e) => getInputRef(e, name)}
+                optionLabel={label}
               />
             ))}
           </div>

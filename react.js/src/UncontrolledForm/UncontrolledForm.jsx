@@ -25,43 +25,27 @@ function UncontrolledForm() {
   };
 
   // This method is used for Validation of Password filed
-  // const validateForm = (e) => {
-  //   // Helper Function
-  //   let password = formDetails.password;
-  //   function isAnyNumber(char) {
-  //     var numArray = Array.from("0123456789");
-  //     return numArray.includes(char);
-  //   }
-  //   // Fetching password
-  //   let arrayPassword = password.split("");
-  //   if (!arrayPassword.some(isAnyNumber) || !(arrayPassword.length >= 8)) {
-  //     e.preventDefault();
-  //     alert(
-  //       "Password should have atleast 8 character and it should include atleast 1 digit"
-  //     );
-  //   }
-  // };
+  const validateForm = (e) => {
+    // Helper Function
+    let password = formDetails.current.password.value;
+    function isAnyNumber(char) {
+      var numArray = Array.from("0123456789");
+      return numArray.includes(char);
+    }
+    // Fetching password
+    let arrayPassword = password.split("");
+    if (!arrayPassword.some(isAnyNumber) || !(arrayPassword.length >= 8)) {
+      e.preventDefault();
+      alert(
+        "Password should have atleast 8 character and it should include atleast 1 digit"
+      );
+    }
+  };
 
   return (
     <div>
       <h1>Uncontrolled form</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(formDetails.current);
-          console.log(formDetails.current.userName.value);
-          console.log(formDetails.current.password.value);
-          console.log(formDetails.current.city.value);
-          console.log(formDetails.current.server.value);
-          console.log(formDetails.current.admin.checked);
-          console.log(formDetails.current.engineer.checked);
-          console.log(formDetails.current.manager.checked);
-          console.log(formDetails.current.guest.checked);
-          console.log(formDetails.current.mail.checked);
-          console.log(formDetails.current.payRoll.checked);
-          console.log(formDetails.current.selfService.checked);
-        }}
-      >
+      <form onSubmit={validateForm}>
         {/* Username Input */}
         <Input
           label="Username : "
@@ -69,7 +53,7 @@ function UncontrolledForm() {
           name="userName"
           placeholder="Enter Your Username Here"
           inputRef={(e) => getInputRef(e, "userName")}
-          // isRequired={true}
+          isRequired={true}
           classes={["input"]}
         />
 
@@ -80,7 +64,7 @@ function UncontrolledForm() {
           name="password"
           placeholder="Enter Your Password Here"
           inputRef={(e) => getInputRef(e, "password")}
-          // isRequired={true}
+          isRequired={true}
           classes={["input"]}
         />
 

@@ -5,12 +5,14 @@ import InputLabel from "./InputLabel";
 import Select from "./Select";
 
 const servers = ["Server 1", "Server 2", "Server 3", "Server 4"];
+
 const roles = [
   { name: "admin", label: "Admin" },
   { name: "engineer", label: "Engineer" },
   { name: "manager", label: "Manager" },
   { name: "guest", label: "Guest" },
 ];
+
 const checkboxes = [
   { name: "mail", label: "Mail" },
   { name: "payRoll", label: "Payroll" },
@@ -123,8 +125,8 @@ function UncontrolledForm() {
         {/* Submit And Reset Input */}
         <div className="input">
           <InputLabel label="" />
-          <input type="submit" value="Login" />
-          <input type="reset" value="Reset" />
+          <Input type="submit" value="Login" />
+          <Input type="reset" value="Reset" />
         </div>
       </form>
     </div>

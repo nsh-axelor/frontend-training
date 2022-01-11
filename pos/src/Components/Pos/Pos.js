@@ -1,5 +1,4 @@
-import React from "react";
-import ItemCard from "../ItemCard";
+import React, { useState } from "react";
 import "./Pos.css";
 import Strawberry from "../../Assets/img/strawberry.jpg";
 import Banana from "../../Assets/img/banana.png";
@@ -17,13 +16,16 @@ import Brinjal from "../../Assets/img/brinjal.jpeg";
 import Broccoli from "../../Assets/img/broccoli.jpeg";
 import Carrot from "../../Assets/img/carrot.jpg";
 import Items from "../Items";
-import { Col, Container, Navbar, Row } from "react-bootstrap";
+import { Col, Container, Navbar, Row, ToastContainer } from "react-bootstrap";
+import Cart from "../Cart";
+import PosToast from "../Toast";
+
 
 const itemData = [
   { name: "Strawberry", price: 10, imageLocation: Strawberry },
   { name: "Banana", price: 2, imageLocation: Banana },
   { name: "Apple", price: 25, imageLocation: Apple },
-  { name: "Pineapple", price: 10, imageLocation: Pineapple },
+  { name: "Pineapple", price: 100, imageLocation: Pineapple },
   { name: "Grapes", price: 40, imageLocation: Grapes },
   { name: "Cherry", price: 8, imageLocation: Cherry },
   { name: "Red Chilly", price: 30, imageLocation: RedChilly },
@@ -34,10 +36,54 @@ const itemData = [
   { name: "Tomato", price: 3, imageLocation: Tomato },
   { name: "Brinjal", price: 20, imageLocation: Brinjal },
   { name: "Broccoli", price: 50, imageLocation: Broccoli },
-  { name: "Carrot", price: 102, imageLocation: Carrot },
+  { name: "Carrot", price: 10, imageLocation: Carrot },
 ];
 
+const itemPrice = {
+  "Strawberry":10.00,
+  "Banana":2.00,
+  "Apple":25.00,
+  "Pineapple":100.00,
+  "Grapes":40.00,
+  "Cherry":8.00,
+  "Red Chilly":30.00,
+  "Capcicum":4.00,
+  "Onion":20.00,
+  "Mashroom":12.00,
+  "Guava":15.00,
+  "Tomato":3.00,
+  "Brinjal":20.00,
+  "Broccoli":50.00,
+  "Carrot":10.00,
+}
+
 const Pos = () => {
+
+
+  const [billList,setBillList] = useState([])
+  
+  const [billData,setBillData] = useState({
+    "Strawberry":0,
+    "Banana":0,
+    "Apple":0,
+    "Pineapple":0,
+    "Grapes":0,
+    "Cherry":0,
+    "Red Chilly":0,
+    "Capcicum":0,
+    "Onion":0,
+    "Mashroom":0,
+    "Guava":0,
+    "Tomato":0,
+    "Brinjal":0,
+    "Broccoli":0,
+    "Carrot":0
+  })
+
+  const [showToaster,setShowToaster] = useState({
+    show:false,
+    name:""
+  })
   return (
     <>
       {/* Navbar */}
@@ -50,11 +96,11 @@ const Pos = () => {
       <Container fluid>
         <Row>
           <Col md="8" style={{ padding: "10px" }}>
-            <Items itemData={itemData} />
+            <Items itemData={itemData} billData = {billData} setBillData={setBillData} billList={billList} setBillList = {setBillList} showToaster={showToaster} setShowToaster={setShowToaster}/>
           </Col>
-          <div className="col-md-4" style={{ padding: "10px" }}>
-            Hello
-          </div>
+          <Col md="4" style={{ padding: "10px" }}>
+            <Cart billData={billData} itemPrice={itemPrice} billList={billList}/>
+          </Col>
         </Row>
       </Container>
     </>

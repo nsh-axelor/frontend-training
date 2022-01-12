@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "./ItemCard.css";
 import { Button, Card, Col, ToastContainer } from "react-bootstrap";
-import PosToast from "../PosToast";
-// import Nandit from "../../Assets/img/"
-import strawberry from "../../Assets/img/strawberry.jpg";
+
+
 const ItemCard = ({
   imageLocation,
   name,
@@ -14,9 +13,10 @@ const ItemCard = ({
   setBillList,
   showToaster,
   setShowToaster,
-  selectedItem,
-  setSelectedItem,
+  toastList,
+  setToastList
 }) => {
+
   const handleClick = (e) => {
     let name = e.target.name;
     let quant = billData[name];
@@ -30,6 +30,8 @@ const ItemCard = ({
       show: true,
       name: name,
     });
+
+    setToastList([...toastList,{key:name+quant,name:name,visible:true}])
   };
 
   return (

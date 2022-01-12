@@ -1,9 +1,13 @@
 import React from "react";
 import { Toast } from "react-bootstrap";
-const PosToast = ({ showToaster, setShowToaster, name }) => {
+const PosToast = ({ showToaster, setShowToaster, name, selectedItemArray }) => {
   return (
     <Toast
-      onClose={() => setShowToaster({ ...showToaster, ["show"]: false })}
+      onClose={() => {
+        setShowToaster({ ...showToaster, ["show"]: false })
+        console.log("Closed")
+        selectedItemArray.pop()
+        }}
       show={showToaster.show}
       delay={3000}
       autohide

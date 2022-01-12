@@ -11,8 +11,9 @@ const Items = ({
   setBillList,
   showToaster,
   setShowToaster,
-  selectedItem,
-  setSelectedItem,
+  toastList,
+  setToastList
+
 }) => {
   return (
 
@@ -29,8 +30,8 @@ const Items = ({
           setBillList={setBillList}
           showToaster={showToaster}
           setShowToaster={setShowToaster}
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
+          toastList={toastList}
+          setToastList={setToastList}
         />
       ))}
     </Row>

@@ -1,28 +1,45 @@
 import React from "react";
-import { ListGroup, Badge } from "react-bootstrap";
+import {
+  ListGroup,
+  Badge,
+  ToastContainer,
+  Toast,
+  Alert,
+} from "react-bootstrap";
 import CartItem from "../CartItem/CartItem";
+import PosToast from "../PosToast";
 
 import "./BillItemList.css";
-const Cart = ({ billData, itemPrice, billList }) => {
+const Cart = ({
+  billData,
+  billList,
+  showToaster,
+  setShowToaster,
+  itemData
+}) => {
   let netPrice = 0;
   return (
     <>
-      <ListGroup as="ol" numbered>
-        {billList.map((key) => (
-          <>
-          <CartItem
-            name={key}
-            itemPrice={itemPrice[key]}
-            itemQuantity={billData[key]}
-          />
-          </>
-        ))}
-      </ListGroup>
+      {billList.length === 0 ? (
+        <Alert variant="warning">Cart is Empty</Alert>
+      ) : (
+        <ListGroup as="ol" numbered>
+          {billList.map((key) => (
+            <>
+              <CartItem
+                name={key}
+                itemPrice={itemData[key].price}
+                itemQuantity={billData[key]}
+              />
+            </>
+          ))}
+        </ListGroup>
+      )}
 
       {billList.length > 0 && (
         <ListGroup as="ul">
           {billList.map((key) => {
-            netPrice += itemPrice[key] * billData[key];
+            netPrice += itemData[key].price * billData[key];
           })}
           <ListGroup.Item
             as="li"
@@ -32,7 +49,7 @@ const Cart = ({ billData, itemPrice, billList }) => {
               <div className="fw-bold">Net Total</div>
             </div>
             <Badge variant="primary" pill>
-              {netPrice}
+              {(netPrice).toFixed(2)}
             </Badge>
           </ListGroup.Item>
         </ListGroup>

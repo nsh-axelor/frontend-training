@@ -1,14 +1,39 @@
 import React from "react";
-import { CardGroup } from "react-bootstrap";
+import { CardGroup, Col, Row, ToastContainer } from "react-bootstrap";
 import ItemCard from "../ItemCard";
+import PosToast from "../PosToast";
 
-const Items = ({ itemData,billData,setBillData, billList, setBillList, showToaster, setShowToaster, selectedItem, setSelectedItem}) => {
+const Items = ({
+  itemData,
+  billData,
+  setBillData,
+  billList,
+  setBillList,
+  showToaster,
+  setShowToaster,
+  selectedItem,
+  setSelectedItem,
+}) => {
   return (
-    <CardGroup>
-      {itemData.map(({ name, price, imageLocation }) => (
-        <ItemCard name={name} price={price} imageLocation={imageLocation}  billData = {billData} setBillData={setBillData} billList={billList} setBillList={setBillList} showToaster={showToaster} setShowToaster={setShowToaster} selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>
+
+    <Row>
+      {Object.keys(itemData).map((key) => (
+        <ItemCard
+          key={key}
+          name={key}
+          price={itemData[key].price}
+          imageLocation={itemData[key].imageLocation}
+          billData={billData}
+          setBillData={setBillData}
+          billList={billList}
+          setBillList={setBillList}
+          showToaster={showToaster}
+          setShowToaster={setShowToaster}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+        />
       ))}
-    </CardGroup>
+    </Row>
   );
 };
 

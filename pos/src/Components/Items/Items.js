@@ -1,7 +1,6 @@
 import React from "react";
-import { CardGroup, Col, Row, ToastContainer } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import ItemCard from "../ItemCard";
-import PosToast from "../PosToast";
 
 const Items = ({
   itemData,

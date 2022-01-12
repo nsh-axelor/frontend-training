@@ -1,14 +1,13 @@
 import React from "react";
 import { Toast } from "react-bootstrap";
-const PosToast = ({ showToaster, setShowToaster, name, selectedItemArray }) => {
-  return (
+
+const PosToast = ({ toastList, setToastList }) => {
+  return toastList.map(({ name, key }) => (
     <Toast
+      key={key}
       onClose={() => {
-        setShowToaster({ ...showToaster, ["show"]: false })
-        console.log("Closed")
-        selectedItemArray.pop()
-        }}
-      show={showToaster.show}
+        setToastList(toastList.filter((item) => item.key !== key));
+      }}
       delay={3000}
       autohide
     >
@@ -18,7 +17,7 @@ const PosToast = ({ showToaster, setShowToaster, name, selectedItemArray }) => {
       </Toast.Header>
       <Toast.Body>Added successfully</Toast.Body>
     </Toast>
-  );
+  ));
 };
 
 export default PosToast;

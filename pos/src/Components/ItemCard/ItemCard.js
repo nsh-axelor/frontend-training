@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ItemCard.css";
-import { Button, Card, Col, ToastContainer } from "react-bootstrap";
-
+import { Button, Card, Col, } from "react-bootstrap";
 
 const ItemCard = ({
   imageLocation,
@@ -11,12 +10,9 @@ const ItemCard = ({
   billData,
   billList,
   setBillList,
-  showToaster,
-  setShowToaster,
   toastList,
-  setToastList
+  setToastList,
 }) => {
-
   const handleClick = (e) => {
     let name = e.target.name;
     let quant = billData[name];
@@ -26,12 +22,10 @@ const ItemCard = ({
       setBillList([...billList, name]);
     }
 
-    setShowToaster({
-      show: true,
-      name: name,
-    });
-
-    setToastList([...toastList,{key:name+quant,name:name,visible:true}])
+    setToastList([
+      ...toastList,
+      { key: name + quant, name: name, visible: true },
+    ]);
   };
 
   return (
@@ -39,15 +33,14 @@ const ItemCard = ({
       <Col md="2">
         <Card>
           <Card.Body>
-          <div
-            style={{
-              backgroundImage: `url(${imageLocation})`,
-              backgroundSize: "contain",
-              height: "150px",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
-          </div>
+            <div
+              style={{
+                backgroundImage: `url(${imageLocation})`,
+                backgroundSize: "contain",
+                height: "150px",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></div>
             <Card.Title>{name}</Card.Title>
             <Card.Text>
               <strong>₹ {price}</strong>

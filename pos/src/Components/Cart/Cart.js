@@ -2,20 +2,15 @@ import React from "react";
 import {
   ListGroup,
   Badge,
-  ToastContainer,
-  Toast,
   Alert,
 } from "react-bootstrap";
 import CartItem from "../CartItem/CartItem";
-import PosToast from "../PosToast";
 
 import "./BillItemList.css";
 const Cart = ({
   billData,
   billList,
-  showToaster,
-  setShowToaster,
-  itemData
+  itemData,
 }) => {
   let netPrice = 0;
   return (
@@ -49,7 +44,7 @@ const Cart = ({
               <div className="fw-bold">Net Total</div>
             </div>
             <Badge variant="primary" pill>
-              {(netPrice).toFixed(2)}
+              {netPrice.toFixed(2)}
             </Badge>
           </ListGroup.Item>
         </ListGroup>

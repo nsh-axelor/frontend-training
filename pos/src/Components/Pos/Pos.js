@@ -19,9 +19,7 @@ import Items from "../Items";
 import {
   Col,
   Container,
-  Navbar,
   Row,
-  Toast,
   ToastContainer,
 } from "react-bootstrap";
 import Cart from "../Cart";
@@ -69,11 +67,6 @@ const Pos = () => {
     Carrot: 0,
   });
 
-  const [showToaster, setShowToaster] = useState({
-    show: false,
-    name: "",
-  });
-
   return (
     <>
       {/* Navbar */}
@@ -88,46 +81,17 @@ const Pos = () => {
               setBillData={setBillData}
               billList={billList}
               setBillList={setBillList}
-              showToaster={showToaster}
-              setShowToaster={setShowToaster}
               toastList={toastList}
               setToastList={setToastList}
             />
           </Col>
           <Col md="4" style={{ padding: "10px" }}>
-            <Cart
-              itemData={itemData}
-              billData={billData}
-              billList={billList}
-              showToaster={showToaster}
-              setShowToaster={setShowToaster}
-            />
+            <Cart itemData={itemData} billData={billData} billList={billList} />
           </Col>
         </Row>
       </Container>
-      {/* <ToastContainer position="top-end" className="p-3">
-        <PosToast setShowToaster={setShowToaster} showToaster={showToaster}/>
-      </ToastContainer> */}
-
       <ToastContainer position="top-end" className="p-3">
-      {toastList.map(({name,key,visible}) => (
-        <Toast
-        key = {key}
-          onClose={() => {
-            setToastList(toastList.filter(item => item.key !== key))
-          }}
-          // show={visible}
-          delay={3000}
-          autohide
-        >
-          <Toast.Header>
-            <strong className="me-auto">{name}</strong>
-            <small>Just Now</small>
-          </Toast.Header>
-          <Toast.Body>Added successfully</Toast.Body>
-        </Toast>
-      ))}
- 
+        <PosToast toastList={toastList} setToastList={setToastList} />
       </ToastContainer>
     </>
   );

@@ -1,10 +1,10 @@
 import './App.css';
-import Pos from './Components/Pos';
+import PosApp from './Components/PosApp';
 
 function App() {
   return (
     <div className="App">
-      <Pos />
+      <PosApp />
     </div>
   );
 }

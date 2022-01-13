@@ -1,31 +1,10 @@
 import React from "react";
 import "./ItemCard.css";
-import { Button, Card, Col, } from "react-bootstrap";
+import { Button, Card, Col } from "react-bootstrap";
 
-const ItemCard = ({
-  imageLocation,
-  name,
-  price,
-  setBillData,
-  billData,
-  billList,
-  setBillList,
-  toastList,
-  setToastList,
-}) => {
+const ItemCard = ({ imageLocation, name, price, addToCart }) => {
   const handleClick = (e) => {
-    let name = e.target.name;
-    let quant = billData[name];
-    setBillData({ ...billData, [name]: quant + 1 });
-
-    if (!billList.includes(name)) {
-      setBillList([...billList, name]);
-    }
-
-    setToastList([
-      ...toastList,
-      { key: name + quant, name: name, visible: true },
-    ]);
+    addToCart(e.target.name);
   };
 
   return (
@@ -34,6 +13,7 @@ const ItemCard = ({
         <Card>
           <Card.Body>
             <div
+              className="card-img"
               style={{
                 backgroundImage: `url(${imageLocation})`,
                 backgroundSize: "contain",
@@ -41,6 +21,7 @@ const ItemCard = ({
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
+
             <Card.Title>{name}</Card.Title>
             <Card.Text>
               <strong>₹ {price}</strong>

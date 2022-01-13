@@ -1,7 +1,7 @@
 import React from "react";
 import { Badge, ListGroup } from "react-bootstrap";
 
-const CartItem = ({ itemQuantity, itemPrice, name }) => {
+const CartItem = ({ quantity, price, name }) => {
   return (
     <ListGroup.Item
       as="li"
@@ -9,10 +9,10 @@ const CartItem = ({ itemQuantity, itemPrice, name }) => {
     >
       <div className="ms-2 me-auto">
         <div className="fw-bold">{name}</div>
-        {"₹ "+itemPrice + " x " + itemQuantity}
+        {"₹ " + price + " x " + quantity}
       </div>
       <Badge variant="primary" pill>
-      {(itemPrice * itemQuantity).toFixed(2)}
+        {(price * quantity).toFixed(2)}
       </Badge>
     </ListGroup.Item>
   );

@@ -16,7 +16,12 @@ import Brinjal from "../../Assets/img/brinjal.jpeg";
 import Broccoli from "../../Assets/img/broccoli.jpeg";
 import Carrot from "../../Assets/img/carrot.jpg";
 import Items from "../Items";
-import { Col, Container, Row, ToastContainer } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  ToastContainer,
+} from "react-bootstrap";
 import Cart from "../Cart";
 import PosNavbar from "../PosNavbar";
 import PosToast from "../PosToast";
@@ -40,13 +45,13 @@ const itemData = {
 };
 
 const PosApp = () => {
-  const [toastList, setToastList] = useState([]);
-
   const [billList, setBillList] = useState([]);
 
   const [netPrice, setNetPrice] = useState(0);
 
   const [billData, setBillData] = useState({});
+
+  const [toastList, setToastList] = useState([]);
 
   // const [bill, setBill] = useState({});
 
@@ -69,6 +74,23 @@ const PosApp = () => {
     setNetPrice(netPrice + itemData[name].price);
   };
 
+  const removeFromCart = (name) => {
+    let quant = billData[name];
+    setBillData({ ...billData, [name]: Number(quant - 1) });
+
+    if (quant === 1) {
+      setBillList(billList.filter((item) => item !== name));
+    }
+
+    setNetPrice(netPrice - itemData[name].price);
+  };
+
+  const handleClearCart = () => {
+    setBillData({});
+    setBillList([]);
+    setNetPrice(0);
+    setToastList([]);
+  };
   const handleToastClose = (key) => {
     setToastList(toastList.filter((item) => item.key !== key));
   };
@@ -88,6 +110,9 @@ const PosApp = () => {
               billData={billData}
               billList={billList}
               netPrice={netPrice}
+              handleClearCart={handleClearCart}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
               // bill={bill}
             />
           </Col>

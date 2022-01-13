@@ -1,16 +1,26 @@
 import React from "react";
-import { ListGroup, Badge, Alert } from "react-bootstrap";
+import {
+  ListGroup,
+  Badge,
+  Alert,
+  Button,
+  Container,
+  Row,
+} from "react-bootstrap";
 import CartItem from "./CartItem";
 
 import "./Cart.css";
 
-const Cart = ({ billData, billList, itemData, netPrice, bill }) => {
-  // let netPrice = 0;
+const Cart = ({
+  billData,
+  billList,
+  itemData,
+  netPrice,
+  handleClearCart,
+  addToCart,
+  removeFromCart,
+}) => {
 
-  // billList.length > 0 && Object.keys(billData).forEach((key) => {
-  //   console.log(key )
-  //   netPrice += itemData[key].price * billData[key];
-  // });
 
   return billList.length === 0 ? (
     <Alert variant="warning">Cart is Empty</Alert>
@@ -23,6 +33,8 @@ const Cart = ({ billData, billList, itemData, netPrice, bill }) => {
             name={key}
             price={itemData[key].price}
             quantity={billData[key]}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
           />
         ))}
       </ListGroup>
@@ -39,6 +51,18 @@ const Cart = ({ billData, billList, itemData, netPrice, bill }) => {
           </Badge>
         </ListGroup.Item>
       </ListGroup>
+      <Container>
+        <Row>
+          <Button
+            variant="outline-danger"
+            size="lg"
+            style={{ margin: "20px auto" }}
+            onClick={handleClearCart}
+          >
+            Clear Cart
+          </Button>
+        </Row>
+      </Container>
     </>
   );
 };

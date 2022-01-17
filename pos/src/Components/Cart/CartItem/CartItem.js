@@ -12,7 +12,7 @@ const CartItem = ({ quantity, price, name, addToCart, removeFromCart }) => {
           <div className="fw-bold">{name}</div>
           {"₹ " + price + " x " + quantity}
         </div>
-        <Badge variant="primary" pill>
+        <Badge bg="primary" pill>
           {(price * quantity).toFixed(2)}
         </Badge>
       </ListGroup.Item>

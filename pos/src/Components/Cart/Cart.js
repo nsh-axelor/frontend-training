@@ -12,27 +12,24 @@ import CartItem from "./CartItem";
 import "./Cart.css";
 
 const Cart = ({
-  billData,
-  billList,
   itemData,
   netPrice,
   handleClearCart,
   addToCart,
   removeFromCart,
+  bill,
 }) => {
-
-
-  return billList.length === 0 ? (
+  return Object.keys(bill).length === 0 ? (
     <Alert variant="warning">Cart is Empty</Alert>
   ) : (
     <>
       <ListGroup as="ol" numbered>
-        {billList.map((key) => (
+        {Object.keys(bill).map((key) => (
           <CartItem
-            key={key + billData[key]}
+            key={key + bill[key]}
             name={key}
             price={itemData[key].price}
-            quantity={billData[key]}
+            quantity={bill[key]}
             addToCart={addToCart}
             removeFromCart={removeFromCart}
           />
@@ -46,7 +43,7 @@ const Cart = ({
           <div className="ms-2 me-auto">
             <div className="fw-bold">Net Total</div>
           </div>
-          <Badge variant="primary" pill>
+          <Badge bg="primary" pill>
             {netPrice.toFixed(2)}
           </Badge>
         </ListGroup.Item>
@@ -68,3 +65,14 @@ const Cart = ({
 };
 
 export default Cart;
+
+// {billList.map((key) => (
+// <CartItem
+//   key={key + billData[key]}
+//   name={key}
+//   price={itemData[key].price}
+//   quantity={billData[key]}
+//   addToCart={addToCart}
+//   removeFromCart={removeFromCart}
+// />
+// ))}

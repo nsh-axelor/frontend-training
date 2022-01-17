@@ -16,12 +16,7 @@ import Brinjal from "../../Assets/img/brinjal.jpeg";
 import Broccoli from "../../Assets/img/broccoli.jpeg";
 import Carrot from "../../Assets/img/carrot.jpg";
 import Items from "../Items";
-import {
-  Col,
-  Container,
-  Row,
-  ToastContainer,
-} from "react-bootstrap";
+import { Col, Container, Row, ToastContainer } from "react-bootstrap";
 import Cart from "../Cart";
 import PosNavbar from "../PosNavbar";
 import PosToast from "../PosToast";
@@ -45,49 +40,59 @@ const itemData = {
 };
 
 const PosApp = () => {
-  const [billList, setBillList] = useState([]);
+  // const [billData, setBillData] = useState({});
+  // const [billList, setBillList] = useState([]);
 
+  const [bill, setBill] = useState({});
   const [netPrice, setNetPrice] = useState(0);
-
-  const [billData, setBillData] = useState({});
-
   const [toastList, setToastList] = useState([]);
 
-  // const [bill, setBill] = useState({});
-
   const addToCart = (name) => {
-    let quant = isNaN(billData[name]) ? 0 : billData[name];
-    setBillData({ ...billData, [name]: Number(quant + 1) });
-
-    if (!billList.includes(name)) {
-      setBillList([...billList, name]);
-    }
-
-    // setBill({
-    //   ...bill,
-    //   [name]: { quanttity: Number(quant + 1), price: itemData[name].price },
-    // });
-    // console.log(bill);
+    let quant = Object.keys(bill).includes(name) ? bill[name] : 0;
+    let currentBillPrice = Object.keys(bill).length !== 0 ? bill.price : 0;
+    setBill({
+      ...bill,
+      [name]: Number(quant + 1),
+    });
 
     setToastList([...toastList, { key: name + quant, name: name }]);
-
     setNetPrice(netPrice + itemData[name].price);
+    console.log(currentBillPrice);
+
+    // ------------- Prev Implementation ------------------
+    // let quant = isNaN(billData[name]) ? 0 : billData[name];
+    // setBillData({ ...billData, [name]: Number(quant + 1) });
+    // if (!billList.includes(name)) {
+    //   setBillList([...billList, name]);
+    // }
   };
 
   const removeFromCart = (name) => {
-    let quant = billData[name];
-    setBillData({ ...billData, [name]: Number(quant - 1) });
-
-    if (quant === 1) {
-      setBillList(billList.filter((item) => item !== name));
-    }
+    let quant = bill[name];
+    quant === 1
+      ? setBill((prevBill) => {
+          delete prevBill[name];
+          return prevBill;
+        })
+      : setBill({
+          ...bill,
+          [name]: Number(quant - 1),
+        });
 
     setNetPrice(netPrice - itemData[name].price);
+
+    // ------------- Prev Implementation ------------------
+    // let quant = billData[name];
+    // setBillData({ ...billData, [name]: Number(quant - 1) });
+    // if (quant === 1) {
+    //   setBillList(billList.filter((item) => item !== name));
+    // }
   };
 
   const handleClearCart = () => {
-    setBillData({});
-    setBillList([]);
+    // setBillData({});
+    // setBillList([]);
+    setBill({});
     setNetPrice(0);
     setToastList([]);
   };
@@ -107,13 +112,11 @@ const PosApp = () => {
           <Col md="4" style={{ padding: "10px" }}>
             <Cart
               itemData={itemData}
-              billData={billData}
-              billList={billList}
               netPrice={netPrice}
               handleClearCart={handleClearCart}
               addToCart={addToCart}
               removeFromCart={removeFromCart}
-              // bill={bill}
+              bill={bill}
             />
           </Col>
         </Row>

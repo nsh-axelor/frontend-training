@@ -20,6 +20,7 @@ import { Col, Container, Row, ToastContainer } from "react-bootstrap";
 import Cart from "../Cart";
 import PosNavbar from "../PosNavbar";
 import PosToast from "../PosToast";
+import PosModal from "../PosModal/PosModal";
 
 const itemData = {
   Strawberry: { price: 10.0, imageLocation: Strawberry },
@@ -46,10 +47,10 @@ const PosApp = () => {
   const [bill, setBill] = useState({});
   const [netPrice, setNetPrice] = useState(0);
   const [toastList, setToastList] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const addToCart = (name) => {
     let quant = Object.keys(bill).includes(name) ? bill[name] : 0;
-    let currentBillPrice = Object.keys(bill).length !== 0 ? bill.price : 0;
     setBill({
       ...bill,
       [name]: Number(quant + 1),
@@ -57,7 +58,6 @@ const PosApp = () => {
 
     setToastList([...toastList, { key: name + quant, name: name }]);
     setNetPrice(netPrice + itemData[name].price);
-    console.log(currentBillPrice);
 
     // ------------- Prev Implementation ------------------
     // let quant = isNaN(billData[name]) ? 0 : billData[name];
@@ -89,9 +89,10 @@ const PosApp = () => {
     // }
   };
 
-  const handleClearCart = () => {
+  const clearCart = () => {
     // setBillData({});
     // setBillList([]);
+    handleShowModal();
     setBill({});
     setNetPrice(0);
     setToastList([]);
@@ -99,6 +100,11 @@ const PosApp = () => {
   const handleToastClose = (key) => {
     setToastList(toastList.filter((item) => item.key !== key));
   };
+
+  const handleShowModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <>
       {/* Navbar */}
@@ -113,7 +119,7 @@ const PosApp = () => {
             <Cart
               itemData={itemData}
               netPrice={netPrice}
-              handleClearCart={handleClearCart}
+              handleShowModal={handleShowModal}
               addToCart={addToCart}
               removeFromCart={removeFromCart}
               bill={bill}
@@ -124,6 +130,14 @@ const PosApp = () => {
       <ToastContainer position="top-end" className="p-3">
         <PosToast toastList={toastList} handleOnClose={handleToastClose} />
       </ToastContainer>
+
+      <PosModal
+        headingTitle="Confirmation"
+        body="Are you sure you want to clear the Shopping-Cart ?"
+        showModal={showModal}
+        handleShowModal={handleShowModal}
+        clearCart={clearCart}
+      />
     </>
   );
 };

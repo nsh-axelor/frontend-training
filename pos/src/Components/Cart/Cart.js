@@ -14,7 +14,7 @@ import "./Cart.css";
 const Cart = ({
   itemData,
   netPrice,
-  handleClearCart,
+  handleShowModal,
   addToCart,
   removeFromCart,
   bill,
@@ -54,7 +54,7 @@ const Cart = ({
             variant="outline-danger"
             size="lg"
             style={{ margin: "20px auto" }}
-            onClick={handleClearCart}
+            onClick={handleShowModal}
           >
             Clear Cart
           </Button>

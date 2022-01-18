@@ -1,7 +1,9 @@
 import React from "react";
 import { Badge, Button, Container, ListGroup } from "react-bootstrap";
 
-const CartItem = ({ quantity, price, name, addToCart, removeFromCart }) => {
+const CartItem = ({ addToCart, removeFromCart,cartProduct }) => {
+    let {quantity,product} = cartProduct;
+    let {title,price} = product
   return (
     <>
       <ListGroup.Item
@@ -9,7 +11,7 @@ const CartItem = ({ quantity, price, name, addToCart, removeFromCart }) => {
         className="d-flex justify-content-between align-items-center"
       >
         <div className="ms-2 me-auto">
-          <div className="fw-bold">{name}</div>
+          <div className="fw-bold">{title}</div>
           {"₹ " + price + " x " + quantity}
         </div>
         <Badge bg="primary" pill>
@@ -18,10 +20,10 @@ const CartItem = ({ quantity, price, name, addToCart, removeFromCart }) => {
       </ListGroup.Item>
 
       <Container>
-        <Button variant="primary" onClick={() => addToCart(name)}>
+        <Button variant="primary" onClick={() => addToCart(product)}>
           +
         </Button>
-        <Button variant="danger" onClick={() => removeFromCart(name)}>
+        <Button variant="danger" onClick={() => removeFromCart(product)}>
           -
         </Button>
       </Container>

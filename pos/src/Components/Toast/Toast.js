@@ -1,12 +1,12 @@
 import React from "react";
 import { Toast } from "react-bootstrap";
 
-const PosToast = ({ toastList, handleOnClose }) => {
+const PosToast = ({ toastList, onClose }) => {
   return toastList.map(({ name, key }) => (
     <Toast
       key={key}
       onClose={() => {
-        handleOnClose(key);
+        onClose(key);
       }}
       delay={3000}
       autohide

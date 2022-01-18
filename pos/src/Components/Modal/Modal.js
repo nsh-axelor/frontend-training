@@ -5,22 +5,22 @@ const PosModal = ({
   headingTitle,
   body,
   showModal,
-  handleShowModal,
-  clearCart,
+  onCancel,
+  onOk,
 }) => {
   return (
     <Modal show={showModal}>
       <Modal.Header>
-        <Modal.Title>Confirmation</Modal.Title>
+        <Modal.Title>{headingTitle}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Are you sure you want to clear the Shopping-Cart ?
+        {body}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleShowModal}>
+        <Button variant="secondary" onClick={onCancel}>
           Cancel
         </Button>
-        <Button variant="primary" onClick={clearCart}>
+        <Button variant="primary" onClick={onOk}>
           Yes
         </Button>
       </Modal.Footer>

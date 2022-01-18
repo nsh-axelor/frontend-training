@@ -10,26 +10,32 @@ import {
 import CartItem from "./CartItem";
 
 import "./Cart.css";
+import PosModal from "../Modal";
 
 const Cart = ({
-  itemData,
-  netPrice,
   handleShowModal,
   addToCart,
   removeFromCart,
-  bill,
+  cart,
+  showModal,
+  clearCart,
 }) => {
-  return Object.keys(bill).length === 0 ? (
+  const computeNetPrice = () => {
+    let netPrice = 0;
+    cart.forEach((cartItem) => {
+      netPrice += cartItem.product.price * cartItem.quantity;
+    });
+    return netPrice;
+  };
+  return cart.length === 0 ? (
     <Alert variant="warning">Cart is Empty</Alert>
   ) : (
     <>
       <ListGroup as="ol" numbered>
-        {Object.keys(bill).map((key) => (
+        {cart.map((cartProduct) => (
           <CartItem
-            key={key + bill[key]}
-            name={key}
-            price={itemData[key].price}
-            quantity={bill[key]}
+            cartProduct={cartProduct}
+            key={cartProduct.id}
             addToCart={addToCart}
             removeFromCart={removeFromCart}
           />
@@ -44,7 +50,7 @@ const Cart = ({
             <div className="fw-bold">Net Total</div>
           </div>
           <Badge bg="primary" pill>
-            {netPrice.toFixed(2)}
+            {computeNetPrice().toFixed(2)}
           </Badge>
         </ListGroup.Item>
       </ListGroup>
@@ -60,19 +66,15 @@ const Cart = ({
           </Button>
         </Row>
       </Container>
+      <PosModal
+        headingTitle="Confirmation"
+        body="Are you sure you want to clear the Shopping-Cart ?"
+        showModal={showModal}
+        onCancel={handleShowModal}
+        onOk={clearCart}
+      />
     </>
   );
 };
 
 export default Cart;
-
-// {billList.map((key) => (
-// <CartItem
-//   key={key + billData[key]}
-//   name={key}
-//   price={itemData[key].price}
-//   quantity={billData[key]}
-//   addToCart={addToCart}
-//   removeFromCart={removeFromCart}
-// />
-// ))}

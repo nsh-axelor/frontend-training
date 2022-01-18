@@ -2,15 +2,13 @@ import React from "react";
 import { Row } from "react-bootstrap";
 import ItemCard from "./ItemCard";
 
-const Items = ({ itemData, addToCart }) => {
+const Items = ({ addToCart, productData }) => {
   return (
     <Row>
-      {Object.keys(itemData).map((key) => (
+      {productData.map((product) => (
         <ItemCard
-          key={key}
-          name={key}
-          price={itemData[key].price}
-          imageLocation={itemData[key].imageLocation}
+          product={product}
+          key={product.id}
           addToCart={addToCart}
         />
       ))}

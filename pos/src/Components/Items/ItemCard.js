@@ -1,12 +1,12 @@
 import React from "react";
-import "./ItemCard.css";
 import { Button, Card, Col } from "react-bootstrap";
 
-const ItemCard = ({ imageLocation, name, price, addToCart }) => {
-  const handleClick = (e) => {
-    addToCart(e.target.name);
+const ItemCard = ({ product, addToCart }) => {
+  const handleClick = () => {
+    addToCart(product);
   };
 
+  let { imageLocation, title, price } = product;
   return (
     <>
       <Col md="2">
@@ -22,13 +22,12 @@ const ItemCard = ({ imageLocation, name, price, addToCart }) => {
               }}
             ></div>
 
-            <Card.Title>{name}</Card.Title>
+            <Card.Title>{title}</Card.Title>
             <Card.Text>
               <strong>₹ {price}</strong>
             </Card.Text>
             <Button
               variant="primary"
-              name={name}
               style={{ fontSize: "1rem" }}
               onClick={handleClick}
             >

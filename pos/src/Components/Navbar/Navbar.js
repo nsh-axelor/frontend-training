@@ -1,15 +1,15 @@
 import React from "react";
 import { Badge, Container, Nav, Navbar } from "react-bootstrap";
 
-const PosNavbar = ({ brandName, noOfCartItems }) => {
+const PosNavbar = ({ brandName, noOfCartItems,onClick,category }) => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container fluid>
         <Navbar.Brand>{brandName}</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link>All</Nav.Link>
-          <Nav.Link>Fruits</Nav.Link>
-          <Nav.Link>Vegetables</Nav.Link>
+        <Nav className="me-auto" activeKey={category} onSelect={(selectedKey) => onClick(selectedKey)}>
+          <Nav.Link eventKey = "all" >All</Nav.Link>
+          <Nav.Link eventKey = "fruit" >Fruits</Nav.Link>
+          <Nav.Link eventKey = "vegetable" >Vegetables</Nav.Link>
         </Nav>
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>

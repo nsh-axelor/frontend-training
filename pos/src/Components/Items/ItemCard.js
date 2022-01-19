@@ -6,7 +6,7 @@ const ItemCard = ({ product, addToCart }) => {
     addToCart(product);
   };
 
-  let { imageLocation, title, price } = product;
+  let { url, title, price } = product;
   return (
     <>
       <Col md="2">
@@ -15,7 +15,7 @@ const ItemCard = ({ product, addToCart }) => {
             <div
               className="card-img"
               style={{
-                backgroundImage: `url(${imageLocation})`,
+                backgroundImage: `url(${url})`,
                 backgroundSize: "contain",
                 height: "150px",
                 backgroundRepeat: "no-repeat",

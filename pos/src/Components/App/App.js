@@ -11,11 +11,11 @@ const App = () => {
   const [toastList, setToastList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [productData, setProductData] = useState();
-  const [category,setCategory] = useState('all')
+  const [category, setCategory] = useState("all");
   useEffect(() => {
     fetch("./products.json")
       .then((res) => res.json())
-      .then((data) => setProductData(data))
+      .then((data) => setProductData(data));
   }, []);
 
   const addToCart = (product) => {
@@ -89,11 +89,25 @@ const App = () => {
   return productData ? (
     <>
       {/* Navbar */}
-      <PosNavbar brandName="Axelor POS" noOfCartItems={cart.length} onClick = {setCategory} category={category} />
+      <PosNavbar
+        brandName="Axelor POS"
+        noOfCartItems={cart.length}
+        onClick={setCategory}
+        category={category}
+        handleShowModal={handleShowModal}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart}
+        clearCart={clearCart}
+        showModal={showModal}
+        cart={cart}
+      />
       <Container fluid>
         <Row>
           <Col md="8" className="p-4 pt-0">
-            <Items addToCart={addToCart} productData={filterProducts(category)} />
+            <Items
+              addToCart={addToCart}
+              productData={filterProducts(category)}
+            />
           </Col>
           <Col md="4" className="p-4">
             <Cart

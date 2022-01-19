@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Strawberry from "../../Assets/img/strawberry.jpg";
 import Banana from "../../Assets/img/banana.png";
@@ -20,6 +20,7 @@ import { Col, Container, Row, ToastContainer } from "react-bootstrap";
 import Cart from "../Cart";
 import PosNavbar from "../Navbar";
 import PosToast from "../Toast";
+// import x from '../../../public/products.json'
 
 const productData = [
   { id: 1, title: "Strawberry", price: 10, imageLocation: Strawberry },
@@ -43,6 +44,9 @@ const App = () => {
   const [cart, setCart] = useState([]);
   const [toastList, setToastList] = useState([]);
   const [showModal, setShowModal] = useState(false);
+
+
+
 
   const addToCart = (product) => {
     const existedItem = cart.find((x) => x.id === product.id);
@@ -100,18 +104,16 @@ const App = () => {
   const handleShowModal = () => {
     setShowModal(!showModal);
   };
-
   return (
     <>
       {/* Navbar */}
-      <PosNavbar brandName="Axelor POS" />
-
+      <PosNavbar brandName="Axelor POS" noOfCartItems={cart.length} />
       <Container fluid>
         <Row>
-          <Col md="8" style={{ padding: "10px" }}>
-            <Items addToCart={addToCart} productData={productData} />
+          <Col md="8" className="p-4 pt-0">
+            <Items addToCart={addToCart} productData={productData}  />
           </Col>
-          <Col md="4" style={{ padding: "10px" }}>
+          <Col md="4" className="p-4">
             <Cart
               handleShowModal={handleShowModal}
               addToCart={addToCart}
@@ -123,7 +125,7 @@ const App = () => {
           </Col>
         </Row>
       </Container>
-      <ToastContainer position="top-end" className="p-3">
+      <ToastContainer position="bottom-end">
         <PosToast toastList={toastList} onClose={onToastClose} />
       </ToastContainer>
     </>

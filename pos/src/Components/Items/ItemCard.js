@@ -10,7 +10,7 @@ const ItemCard = ({ product, addToCart }) => {
   return (
     <>
       <Col md="2">
-        <Card>
+        <Card className="mt-4">
           <Card.Body>
             <div
               className="card-img"
@@ -21,16 +21,11 @@ const ItemCard = ({ product, addToCart }) => {
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
-
             <Card.Title>{title}</Card.Title>
             <Card.Text>
               <strong>₹ {price}</strong>
             </Card.Text>
-            <Button
-              variant="primary"
-              style={{ fontSize: "1rem" }}
-              onClick={handleClick}
-            >
+            <Button variant="primary" onClick={handleClick}>
               Add To Cart
             </Button>
           </Card.Body>

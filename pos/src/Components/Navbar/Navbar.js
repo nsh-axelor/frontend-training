@@ -1,7 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import CartIcon from "./CartIcon";
 import "./Navbar.css";
+
+const sortIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="white"
+    class="bi bi-sort-up"
+    viewBox="0 0 16 16"
+  >
+    <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z" />
+  </svg>
+);
+
+const options = [
+  {
+    eventKey: "title",
+    title: "By Title",
+  },
+  {
+    eventKey: "price",
+    title: "By Price",
+  },
+  {
+    eventKey: "category",
+    title: "By Category",
+  },
+];
 
 const PosNavbar = ({
   categories,
@@ -14,17 +42,13 @@ const PosNavbar = ({
   cart,
   showModal,
   clearCart,
-  sortBy
+  sortBy,
 }) => {
-  const [category, setCategory] = useState("all");
   const transformText = (text) => {
     let transformedText = text[0].toUpperCase() + text.substring(1) + "s";
     return transformedText;
   };
-  const onCategorySelect = (c) => {
-    setCategory(c);
-    filterByCategory(c);
-  };
+
   return (
     <>
       <Navbar bg="dark" variant="dark">
@@ -32,8 +56,8 @@ const PosNavbar = ({
           <Navbar.Brand>{brandName}</Navbar.Brand>
           <Nav
             className="me-auto"
-            activeKey={category}
-            onSelect={(selectedKey) => onCategorySelect(selectedKey)}
+            defaultActiveKey={"all"}
+            onSelect={(selectedKey) => filterByCategory(selectedKey)}
           >
             <Nav.Link eventKey="all">All</Nav.Link>
             {categories.map((category) => (
@@ -41,12 +65,21 @@ const PosNavbar = ({
                 {transformText(category)}
               </Nav.Link>
             ))}
+          </Nav>
+          <Nav className="me-auto" >
             <NavDropdown title="Sort" onSelect={(s) => sortBy(s)}>
-              <NavDropdown.Item eventKey={"title"} >By Title</NavDropdown.Item>
-              <NavDropdown.Item eventKey={"price"} >By Price</NavDropdown.Item>
-              <NavDropdown.Item eventKey={"category"} >By Category</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item eventKey={"id"}>Clear</NavDropdown.Item>
+              {options.map(({ eventKey, title }) => (
+                <NavDropdown.Item eventKey={eventKey}>
+                  {title} {sortIcon}
+                </NavDropdown.Item>
+              ))}
+              <NavDropdown.Item
+                onClick={() => {
+                  sortBy("id");
+                }}
+              >
+                Clear
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Navbar.Collapse className="justify-content-end">

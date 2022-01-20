@@ -106,35 +106,9 @@ const App = () => {
   };
 
   const sortBy = (x) => {
-    console.log(x);
-    // setProductData((prevState) => {
-    //   let newProductData = [...prevState]
-    //   newProductData.sort((a ,b) => {
-    //     if (a[x] > b[x]) {
-    //       return 1;
-    //     }
-    //     if (a[x] < b[x]) {
-    //       return -1;
-    //     }
-    //     return 0;
-    //   })
-    //   return newProductData
-    // }
-    // );
-    setProductData(
-      [...productData].sort((a ,b) => {
-            if (a[x] > b[x]) {
-              return 1;
-            }
-            if (a[x] < b[x]) {
-              return -1;
-            }
-            return 0;
-          })
-        );
-    setData((prevState) => {
-      let newData = [...prevState]
-      newData.sort((a ,b) => {
+    setProductData((prevState) => {
+      let newProductData = [...prevState];
+      newProductData.sort((a, b) => {
         if (a[x] > b[x]) {
           return 1;
         }
@@ -142,10 +116,22 @@ const App = () => {
           return -1;
         }
         return 0;
-      })
-      return newData
-    }
-    );
+      });
+      return newProductData;
+    });
+    setData((prevState) => {
+      let newData = [...prevState];
+      newData.sort((a, b) => {
+        if (a[x] > b[x]) {
+          return 1;
+        }
+        if (a[x] < b[x]) {
+          return -1;
+        }
+        return 0;
+      });
+      return newData;
+    });
   };
   return (
     <>

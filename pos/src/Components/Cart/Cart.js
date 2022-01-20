@@ -7,10 +7,10 @@ import {
   Container,
   Row,
 } from "react-bootstrap";
-import CartItem from "./CartItem";
 
 import "./Cart.css";
 import PosModal from "../Modal";
+import CartProduct from "./CartProduct";
 
 const Cart = ({
   handleShowModal,
@@ -33,7 +33,7 @@ const Cart = ({
     <>
       <ListGroup as="ol" numbered>
         {cart.map((cartProduct) => (
-          <CartItem
+          <CartProduct
             cartProduct={cartProduct}
             key={cartProduct.id}
             addToCart={addToCart}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import Items from "../Items";
+import Products from "../Products";
 import { Col, Container, ToastContainer, Row } from "react-bootstrap";
 import Cart from "../Cart";
 import PosNavbar from "../Navbar";
@@ -19,18 +19,21 @@ const App = () => {
   }, []);
 
   const addToCart = (product) => {
-    const existedItem = cart.find((x) => x.id === product.id);
-    if (existedItem) {
-      setCart(
-        cart.map((cartItem) =>
-          cartItem.id === product.id
-            ? { ...existedItem, quantity: existedItem.quantity + 1 }
-            : cartItem
-        )
+    setCart((prevCart) => {
+      const newCart = [...prevCart];
+      let selectedProductIndex = newCart.findIndex(
+        (item) => item.id === product.id
       );
-    } else {
-      setCart([...cart, { id: product.id, product: product, quantity: 1 }]);
-    }
+      if (selectedProductIndex === -1) {
+        return [...newCart, { id: product.id, product: product, quantity: 1 }];
+      } else {
+        newCart[selectedProductIndex] = {
+          ...newCart[selectedProductIndex],
+          quantity: newCart[selectedProductIndex].quantity + 1,
+        };
+        return newCart;
+      }
+    });
     setToastList([...toastList, { key: Math.random(), name: product.title }]);
   };
 
@@ -104,7 +107,7 @@ const App = () => {
       <Container fluid>
         <Row>
           <Col md="8" className="p-4 pt-0">
-            <Items
+            <Products
               addToCart={addToCart}
               productData={filterProducts(category)}
             />
@@ -131,24 +134,3 @@ const App = () => {
 };
 
 export default App;
-
-// ------------------ Query Code ---------------------------------
-// setCart((prevCart) => {
-// let cartProductIds = prevCart.map((cartProduct) => cartProduct.id);
-// let selectedProductIndex = prevCart.findIndex(
-//   (item) => item.id === product.id
-// );
-// if (cartProductIds.includes(product.id)) {
-//   prevCart[selectedProductIndex].quantity++;
-//   return [...prevCart];
-// } else {
-//   return [
-//     ...prevCart,
-//     {
-//       id: product.id,
-//       product:product,
-//       quantity: 1,
-//     },
-//   ];
-// }
-// });

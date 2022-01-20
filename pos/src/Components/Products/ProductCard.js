@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Card, Col } from "react-bootstrap";
 
-const ItemCard = ({ product, addToCart }) => {
+const ProductCard = ({ product, addToCart }) => {
   const handleClick = () => {
     addToCart(product);
   };
@@ -35,4 +35,4 @@ const ItemCard = ({ product, addToCart }) => {
   );
 };
 
-export default ItemCard;
+export default ProductCard;

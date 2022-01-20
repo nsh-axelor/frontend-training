@@ -7,17 +7,29 @@ import PosNavbar from "../Navbar";
 import PosToast from "../Toast";
 
 const App = () => {
+  const [categories, setCategories] = useState([]);
   const [cart, setCart] = useState([]);
   const [toastList, setToastList] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [productData, setProductData] = useState();
-  const [category, setCategory] = useState("all");
+  const [data, setData] = useState([]);
+  const [productData, setProductData] = useState([]);
+
+  // Fetching the data from products.json file
   useEffect(() => {
     fetch("./products.json")
       .then((res) => res.json())
-      .then((data) => setProductData(data));
+      .then((data) => {
+        setData(data);
+        let x = [];
+        data.map((product) =>
+          !x.includes(product.category) ? x.push(product.category) : null
+        );
+        setCategories(x);
+        setProductData(data);
+      });
   }, []);
 
+  // Adding product to the cart
   const addToCart = (product) => {
     setCart((prevCart) => {
       const newCart = [...prevCart];
@@ -37,6 +49,7 @@ const App = () => {
     setToastList([...toastList, { key: Math.random(), name: product.title }]);
   };
 
+  // Removig item from the cart
   const removeFromCart = (product) => {
     // SetCart Data method
     setCart((prevCart) => {
@@ -64,53 +77,53 @@ const App = () => {
     });
   };
 
+  // Clearing Cart
   const clearCart = () => {
     handleShowModal();
     setCart([]);
     setToastList([]);
   };
 
+  // Closing the Toast using "X" button
   const onToastClose = (key) => {
     setToastList(toastList.filter((item) => item.key !== key));
   };
 
+  // For Showing Modal while clearing cart
   const handleShowModal = () => {
     setShowModal(!showModal);
   };
 
-  const filterProducts = (category) => {
+  // Filtering products based on the category selected
+  const filterByCategory = (c) => {
     let filteredProductData = [];
-    if (category === "all") {
-      filteredProductData = productData;
+    if (c === "all") {
+      // filteredProductData = data;
+      setProductData(data);
     } else {
-      filteredProductData = productData.filter(
-        (product) => product.category === category
-      );
+      filteredProductData = data.filter((product) => product.category === c);
+      setProductData(filteredProductData);
     }
-    return filteredProductData;
   };
-  return productData ? (
+
+  return (
     <>
-      {/* Navbar */}
       <PosNavbar
         brandName="Axelor POS"
         noOfCartItems={cart.length}
-        onClick={setCategory}
-        category={category}
+        filterByCategory={filterByCategory}
         handleShowModal={handleShowModal}
         addToCart={addToCart}
         removeFromCart={removeFromCart}
         clearCart={clearCart}
         showModal={showModal}
         cart={cart}
+        categories={categories}
       />
       <Container fluid>
         <Row>
           <Col md="8" className="p-4 pt-0">
-            <Products
-              addToCart={addToCart}
-              productData={filterProducts(category)}
-            />
+            <Products addToCart={addToCart} productData={productData} />
           </Col>
           <Col md="4" className="p-4">
             <Cart
@@ -128,8 +141,6 @@ const App = () => {
         <PosToast toastList={toastList} onClose={onToastClose} />
       </ToastContainer>
     </>
-  ) : (
-    ""
   );
 };
 

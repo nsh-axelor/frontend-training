@@ -6,7 +6,7 @@ const Products = ({ addToCart, productData }) => {
   return (
     <Row>
       {productData.map((product) => (
-        <ProductCard product={product} key={product.id} addToCart={addToCart} />
+        <ProductCard product={product} key={product.title} addToCart={addToCart} />
       ))}
     </Row>
   );

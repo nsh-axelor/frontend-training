@@ -14,6 +14,7 @@ const PosNavbar = ({
   cart,
   showModal,
   clearCart,
+  sortBy
 }) => {
   const [category, setCategory] = useState("all");
   const transformText = (text) => {
@@ -40,12 +41,12 @@ const PosNavbar = ({
                 {transformText(category)}
               </Nav.Link>
             ))}
-            <NavDropdown title="Sort">
-              <NavDropdown.Item>By Title</NavDropdown.Item>
-              <NavDropdown.Item>By Price</NavDropdown.Item>
-              <NavDropdown.Item>By Category</NavDropdown.Item>
+            <NavDropdown title="Sort" onSelect={(s) => sortBy(s)}>
+              <NavDropdown.Item eventKey={"title"} >By Title</NavDropdown.Item>
+              <NavDropdown.Item eventKey={"price"} >By Price</NavDropdown.Item>
+              <NavDropdown.Item eventKey={"category"} >By Category</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item>Clear</NavDropdown.Item>
+              <NavDropdown.Item eventKey={"id"}>Clear</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Navbar.Collapse className="justify-content-end">

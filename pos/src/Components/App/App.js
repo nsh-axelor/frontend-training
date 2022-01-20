@@ -96,16 +96,57 @@ const App = () => {
 
   // Filtering products based on the category selected
   const filterByCategory = (c) => {
-    let filteredProductData = [];
     if (c === "all") {
-      // filteredProductData = data;
       setProductData(data);
     } else {
+      let filteredProductData = [];
       filteredProductData = data.filter((product) => product.category === c);
       setProductData(filteredProductData);
     }
   };
 
+  const sortBy = (x) => {
+    console.log(x);
+    // setProductData((prevState) => {
+    //   let newProductData = [...prevState]
+    //   newProductData.sort((a ,b) => {
+    //     if (a[x] > b[x]) {
+    //       return 1;
+    //     }
+    //     if (a[x] < b[x]) {
+    //       return -1;
+    //     }
+    //     return 0;
+    //   })
+    //   return newProductData
+    // }
+    // );
+    setProductData(
+      [...productData].sort((a ,b) => {
+            if (a[x] > b[x]) {
+              return 1;
+            }
+            if (a[x] < b[x]) {
+              return -1;
+            }
+            return 0;
+          })
+        );
+    setData((prevState) => {
+      let newData = [...prevState]
+      newData.sort((a ,b) => {
+        if (a[x] > b[x]) {
+          return 1;
+        }
+        if (a[x] < b[x]) {
+          return -1;
+        }
+        return 0;
+      })
+      return newData
+    }
+    );
+  };
   return (
     <>
       <PosNavbar
@@ -119,6 +160,7 @@ const App = () => {
         showModal={showModal}
         cart={cart}
         categories={categories}
+        sortBy={sortBy}
       />
       <Container fluid>
         <Row>

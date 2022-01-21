@@ -22,7 +22,7 @@ const CartProduct = ({ addToCart, removeFromCart, cartProduct }) => {
               -
             </Button>
             <Button variant="light">{quantity}</Button>
-            <Button variant="success" onClick={() => addToCart(product)}>
+            <Button variant="success" onClick={() => addToCart(product,false)}>
               +
             </Button>
           </ButtonGroup>

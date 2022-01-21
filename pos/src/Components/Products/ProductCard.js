@@ -3,7 +3,7 @@ import { Button, Card, Col } from "react-bootstrap";
 
 const ProductCard = ({ product, addToCart }) => {
   const handleClick = () => {
-    addToCart(product);
+    addToCart(product,true);
   };
 
   let { url, title, price } = product;

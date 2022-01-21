@@ -59,7 +59,7 @@ const Cart = ({
           <Button
             variant="outline-danger"
             size="lg"
-            style={{ margin: "20px auto" }}
+            className="mt-4"
             onClick={handleShowModal}
           >
             Clear Cart

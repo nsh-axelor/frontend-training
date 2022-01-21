@@ -34,7 +34,7 @@ const CartIcon = ({
   );
 
   const icon = (
-    <span tabIndex={1}>
+    <span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"

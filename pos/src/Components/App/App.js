@@ -7,12 +7,22 @@ import PosNavbar from "../Navbar";
 import PosToast from "../Toast";
 
 const App = () => {
-  const [categories, setCategories] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [toastList, setToastList] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  // Data fetched from JSON file
   const [data, setData] = useState([]);
+
+  // Data that should be shown to the customer
   const [productData, setProductData] = useState([]);
+
+  // For Extracting distinct Categories from the data
+  const [categories, setCategories] = useState([]);
+
+  // For handling Cart Data
+  const [cart, setCart] = useState([]);
+
+  // For generated Tosts
+  const [toastList, setToastList] = useState([]);
+
+  const [showModal, setShowModal] = useState(false);
 
   // Fetching the data from products.json file
   useEffect(() => {
@@ -20,17 +30,19 @@ const App = () => {
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-        let x = [];
-        data.map((product) =>
-          !x.includes(product.category) ? x.push(product.category) : null
-        );
-        setCategories(x);
+        setCategories((prevState) => {
+          let x = [...prevState];
+          data.map((product) =>
+            !x.includes(product.category) ? x.push(product.category) : null
+          );
+          return x;
+        });
         setProductData(data);
       });
   }, []);
 
   // Adding product to the cart
-  const addToCart = (product) => {
+  const addToCart = (product,showToast) => {
     setCart((prevCart) => {
       const newCart = [...prevCart];
       let selectedProductIndex = newCart.findIndex(
@@ -46,7 +58,9 @@ const App = () => {
         return newCart;
       }
     });
-    setToastList([...toastList, { key: Math.random(), name: product.title }]);
+    if(showToast){
+      setToastList([...toastList, { key: Math.random(), name: product.title }]);
+    }
   };
 
   // Removig item from the cart
@@ -105,7 +119,9 @@ const App = () => {
     }
   };
 
+  // For Sorrting the productData and data state variable
   const sortBy = (x) => {
+    // Sorting productData state varibale
     setProductData((prevState) => {
       let newProductData = [...prevState];
       newProductData.sort((a, b) => {
@@ -119,6 +135,8 @@ const App = () => {
       });
       return newProductData;
     });
+
+    // Sorting data state variable
     setData((prevState) => {
       let newData = [...prevState];
       newData.sort((a, b) => {

@@ -24,6 +24,8 @@ const App = () => {
 
   const [showModal, setShowModal] = useState(false);
 
+
+
   // Fetching the data from products.json file
   useEffect(() => {
     fetch("./products.json")
@@ -31,7 +33,7 @@ const App = () => {
       .then((data) => {
         setData(data);
         setCategories((prevState) => {
-          let x = [...prevState];
+          let x = [];
           data.map((product) =>
             !x.includes(product.category) ? x.push(product.category) : null
           );
@@ -42,7 +44,7 @@ const App = () => {
   }, []);
 
   // Adding product to the cart
-  const addToCart = (product,showToast) => {
+  const addToCart = (product, showToast) => {
     setCart((prevCart) => {
       const newCart = [...prevCart];
       let selectedProductIndex = newCart.findIndex(
@@ -58,7 +60,7 @@ const App = () => {
         return newCart;
       }
     });
-    if(showToast){
+    if (showToast) {
       setToastList([...toastList, { key: Math.random(), name: product.title }]);
     }
   };
@@ -111,46 +113,40 @@ const App = () => {
   // Filtering products based on the category selected
   const filterByCategory = (c) => {
     if (c === "all") {
-      setProductData(data);
+      setProductData([...data]);
     } else {
       let filteredProductData = [];
-      filteredProductData = data.filter((product) => product.category === c);
+      filteredProductData = [...data].filter((product) => product.category === c);
       setProductData(filteredProductData);
     }
   };
 
   // For Sorrting the productData and data state variable
-  const sortBy = (x) => {
-    // Sorting productData state varibale
-    setProductData((prevState) => {
-      let newProductData = [...prevState];
-      newProductData.sort((a, b) => {
-        if (a[x] > b[x]) {
-          return 1;
-        }
-        if (a[x] < b[x]) {
-          return -1;
-        }
-        return 0;
-      });
-      return newProductData;
-    });
-
-    // Sorting data state variable
-    setData((prevState) => {
-      let newData = [...prevState];
-      newData.sort((a, b) => {
-        if (a[x] > b[x]) {
-          return 1;
-        }
-        if (a[x] < b[x]) {
-          return -1;
-        }
-        return 0;
-      });
-      return newData;
-    });
+  const sortBy = (property, reversed) => {
+    setProductData(sortData(property,[...productData],reversed))
+    setData(sortData(property,[...data],reversed))
   };
+
+
+  const sortData = (property,data,reversed) => {
+    data.sort((a, b) => {
+        if (a[property] > b[property]) {
+          return reversed ? -1 : 1;
+        }
+        if (a[property] < b[property]) {
+          return reversed ? 1 : -1;
+        }
+        if (a.id > b.id) {
+          return reversed ? -1 : 1;
+        }
+        if (a.id < b.id) {
+          return reversed ? 1 : -1;
+        }
+        return 0
+    });
+    return data;
+  }
+
   return (
     <>
       <PosNavbar
@@ -191,3 +187,4 @@ const App = () => {
 };
 
 export default App;
+

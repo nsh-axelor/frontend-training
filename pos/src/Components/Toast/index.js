@@ -1,3 +1,3 @@
-import PosToast from './Toast'
+import Toast from './Toast'
 
-export default PosToast;
+export default Toast;

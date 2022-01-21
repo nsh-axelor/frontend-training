@@ -1,9 +1,9 @@
 import React from "react";
-import { Toast } from "react-bootstrap";
+import { Toast as BsToast } from "react-bootstrap";
 
-const PosToast = ({ toastList, onClose }) => {
+const Toast = ({ toastList, onClose }) => {
   return toastList.map(({ name, key }) => (
-    <Toast
+    <BsToast
       key={key}
       onClose={() => {
         onClose(key);
@@ -11,13 +11,13 @@ const PosToast = ({ toastList, onClose }) => {
       delay={3000}
       autohide
     >
-      <Toast.Header>
+      <BsToast.Header>
         <strong className="me-auto">{name}</strong>
         <small>Just Now</small>
-      </Toast.Header>
-      <Toast.Body>Added successfully</Toast.Body>
-    </Toast>
+      </BsToast.Header>
+      <BsToast.Body>Added successfully</BsToast.Body>
+    </BsToast>
   ));
 };
 
-export default PosToast;
+export default Toast;

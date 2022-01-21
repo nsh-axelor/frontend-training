@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal as BsModal } from "react-bootstrap";
 
-const PosModal = ({
+const Modal = ({
   headingTitle,
   body,
   showModal,
@@ -9,23 +9,23 @@ const PosModal = ({
   onOk,
 }) => {
   return (
-    <Modal show={showModal}>
-      <Modal.Header>
-        <Modal.Title>{headingTitle}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+    <BsModal show={showModal}>
+      <BsModal.Header>
+        <BsModal.Title>{headingTitle}</BsModal.Title>
+      </BsModal.Header>
+      <BsModal.Body>
         {body}
-      </Modal.Body>
-      <Modal.Footer>
+      </BsModal.Body>
+      <BsModal.Footer>
         <Button variant="secondary" onClick={onCancel}>
           Cancel
         </Button>
         <Button variant="primary" onClick={onOk}>
           Yes
         </Button>
-      </Modal.Footer>
-    </Modal>
+      </BsModal.Footer>
+    </BsModal>
   );
 };
 
-export default PosModal;
+export default Modal;

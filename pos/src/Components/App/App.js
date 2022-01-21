@@ -3,8 +3,8 @@ import "./App.css";
 import Products from "../Products";
 import { Col, Container, ToastContainer, Row } from "react-bootstrap";
 import Cart from "../Cart";
-import PosNavbar from "../Navbar";
-import PosToast from "../Toast";
+import Toast from "../Toast";
+import Navbar from "../Navbar";
 
 const App = () => {
   // Data fetched from JSON file
@@ -24,21 +24,19 @@ const App = () => {
 
   const [showModal, setShowModal] = useState(false);
 
-
-
   // Fetching the data from products.json file
   useEffect(() => {
     fetch("./products.json")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-        setCategories((prevState) => {
-          let x = [];
-          data.map((product) =>
-            !x.includes(product.category) ? x.push(product.category) : null
-          );
-          return x;
-        });
+        let filteredCategory = [];
+        data.map((product) =>
+          !filteredCategory.includes(product.category)
+            ? filteredCategory.push(product.category)
+            : null
+        );
+        setCategories(filteredCategory);
         setProductData(data);
       });
   }, []);
@@ -116,51 +114,59 @@ const App = () => {
       setProductData([...data]);
     } else {
       let filteredProductData = [];
-      filteredProductData = [...data].filter((product) => product.category === c);
+      filteredProductData = [...data].filter(
+        (product) => product.category === c
+      );
       setProductData(filteredProductData);
     }
   };
 
   // For Sorrting the productData and data state variable
   const sortBy = (property, reversed) => {
-    setProductData(sortData(property,[...productData],reversed))
-    setData(sortData(property,[...data],reversed))
+    setProductData(sortData(property, [...productData], reversed));
+    setData(sortData(property, [...data], reversed));
   };
 
-
-  const sortData = (property,data,reversed) => {
+  const sortData = (property, data, reversed) => {
     data.sort((a, b) => {
-        if (a[property] > b[property]) {
-          return reversed ? -1 : 1;
-        }
-        if (a[property] < b[property]) {
-          return reversed ? 1 : -1;
-        }
-        if (a.id > b.id) {
-          return reversed ? -1 : 1;
-        }
-        if (a.id < b.id) {
-          return reversed ? 1 : -1;
-        }
-        return 0
+      if (a[property] > b[property]) {
+        return reversed ? -1 : 1;
+      }
+      if (a[property] < b[property]) {
+        return reversed ? 1 : -1;
+      }
+      if (a.id > b.id) {
+        return reversed ? -1 : 1;
+      }
+      if (a.id < b.id) {
+        return reversed ? 1 : -1;
+      }
+      return 0;
     });
     return data;
-  }
+  };
 
-  return (
-    <>
-      <PosNavbar
-        brandName="Axelor POS"
-        noOfCartItems={cart.length}
-        filterByCategory={filterByCategory}
+  const renderCart = () => {
+    return (
+      <Cart
         handleShowModal={handleShowModal}
         addToCart={addToCart}
         removeFromCart={removeFromCart}
         clearCart={clearCart}
         showModal={showModal}
         cart={cart}
+      />
+    );
+  };
+  return (
+    <>
+      <Navbar
+        brandName="Axelor POS"
+        noOfCartItems={cart.length}
+        filterByCategory={filterByCategory}
         categories={categories}
         sortBy={sortBy}
+        renderCart={renderCart}
       />
       <Container fluid>
         <Row>
@@ -168,23 +174,15 @@ const App = () => {
             <Products addToCart={addToCart} productData={productData} />
           </Col>
           <Col md="4" className="p-4">
-            <Cart
-              handleShowModal={handleShowModal}
-              addToCart={addToCart}
-              removeFromCart={removeFromCart}
-              clearCart={clearCart}
-              showModal={showModal}
-              cart={cart}
-            />
+            {renderCart()}
           </Col>
         </Row>
       </Container>
       <ToastContainer position="bottom-end">
-        <PosToast toastList={toastList} onClose={onToastClose} />
+        <Toast toastList={toastList} onClose={onToastClose} />
       </ToastContainer>
     </>
   );
 };
 
 export default App;
-

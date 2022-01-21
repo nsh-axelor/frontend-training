@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 
 import "./Cart.css";
-import PosModal from "../Modal";
+import Modal from "../Modal";
 import CartProduct from "./CartProduct";
 
 const Cart = ({
@@ -66,7 +66,7 @@ const Cart = ({
           </Button>
         </Row>
       </Container>
-      <PosModal
+      <Modal
         headingTitle="Confirmation"
         body="Are you sure you want to clear the Shopping-Cart ?"
         showModal={showModal}

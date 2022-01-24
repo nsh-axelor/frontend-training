@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import Products from "../Products";
 import { Col, Container, ToastContainer, Row } from "react-bootstrap";
@@ -10,19 +10,17 @@ const App = () => {
   // Data fetched from JSON file
   const [data, setData] = useState([]);
 
-  // Data that should be shown to the customer
-  const [productData, setProductData] = useState([]);
-
-  // For Extracting distinct Categories from the data
-  const [categories, setCategories] = useState([]);
-
   // For handling Cart Data
   const [cart, setCart] = useState([]);
+
+  const [category, setCategory] = useState("all");
 
   // For generated Tosts
   const [toastList, setToastList] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
+
+  const [sort, setSort] = useState({});
 
   // Fetching the data from products.json file
   useEffect(() => {
@@ -30,14 +28,6 @@ const App = () => {
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-        let filteredCategory = [];
-        data.map((product) =>
-          !filteredCategory.includes(product.category)
-            ? filteredCategory.push(product.category)
-            : null
-        );
-        setCategories(filteredCategory);
-        setProductData(data);
       });
   }, []);
 
@@ -110,36 +100,23 @@ const App = () => {
 
   // Filtering products based on the category selected
   const filterByCategory = (c) => {
-    if (c === "all") {
-      setProductData([...data]);
-    } else {
-      let filteredProductData = [];
-      filteredProductData = [...data].filter(
-        (product) => product.category === c
-      );
-      setProductData(filteredProductData);
+    let filteredData = data.slice();
+    return c === "all"
+      ? filteredData
+      : filteredData.filter((product) => product.category === c);
+  };
+
+  const sortData = (sort, data) => {
+    let { property, order } = sort;
+    if (property === "id") {
+      return data;
     }
-  };
-
-  // For Sorrting the productData and data state variable
-  const sortBy = (property, reversed) => {
-    setProductData(sortData(property, [...productData], reversed));
-    setData(sortData(property, [...data], reversed));
-  };
-
-  const sortData = (property, data, reversed) => {
     data.sort((a, b) => {
       if (a[property] > b[property]) {
-        return reversed ? -1 : 1;
+        return order === "ASC" ? 1 : -1;
       }
       if (a[property] < b[property]) {
-        return reversed ? 1 : -1;
-      }
-      if (a.id > b.id) {
-        return reversed ? -1 : 1;
-      }
-      if (a.id < b.id) {
-        return reversed ? 1 : -1;
+        return order === "ASC" ? -1 : 1;
       }
       return 0;
     });
@@ -150,28 +127,47 @@ const App = () => {
     return (
       <Cart
         handleShowModal={handleShowModal}
-        addToCart={addToCart}
-        removeFromCart={removeFromCart}
+        onAddToCart={addToCart}
+        onRemoveFromCart={removeFromCart}
         clearCart={clearCart}
         showModal={showModal}
         cart={cart}
       />
     );
   };
+
+  const $categories = useMemo(() => {
+    let filteredCategory = [];
+    data.map((product) =>
+      !filteredCategory.includes(product.category)
+        ? filteredCategory.push(product.category)
+        : null
+    );
+    return filteredCategory;
+  }, [data]);
+
+  const $productData = useMemo(() => {
+    let filteredData = filterByCategory(category);
+    let sortedData = sortData(sort, filteredData);
+    return sortedData;
+  }, [category, data, sort]);
+
+  
   return (
     <>
       <Navbar
         brandName="Axelor POS"
         noOfCartItems={cart.length}
-        filterByCategory={filterByCategory}
-        categories={categories}
-        sortBy={sortBy}
-        renderCart={renderCart}
+        links = {$categories}
+        Cart={renderCart}
+        setActiveLink={setCategory}
+        option={sort}
+        setOption={setSort}
       />
       <Container fluid>
         <Row>
           <Col md="8" className="p-4 pt-0">
-            <Products addToCart={addToCart} productData={productData} />
+            <Products onAddToCart={addToCart} productData={$productData} />
           </Col>
           <Col md="4" className="p-4">
             {renderCart()}

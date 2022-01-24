@@ -1,27 +1,26 @@
 import React from "react";
 import { Badge, OverlayTrigger, Popover } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
+
+
 const CartIcon = ({
   noOfCartItems,
-  renderCart
+  Cart
 }) => {
   const popover = (
     <Popover
-      style={{
-        maxWidth: "320px",
-        minWidth: "320px",
-      }}
+      className="cart-popover"
     >
       <Popover.Header as="h3">Cart</Popover.Header>
       <Popover.Body>
-        {renderCart()}
+        {Cart()}
       </Popover.Body>
     </Popover>
   );
 
   const icon = (
     <span>
-     <i class="bi bi-cart"></i>
+     <i className="bi bi-cart"></i>
       {noOfCartItems > 0 && (
         <Badge bg="danger" pill className="cart-icon">
           {noOfCartItems}
@@ -31,7 +30,7 @@ const CartIcon = ({
   );
 
   return (
-    <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+    <OverlayTrigger trigger="click" className="cart-popover" placement="bottom" overlay={popover}>
      {icon}
     </OverlayTrigger>
   );

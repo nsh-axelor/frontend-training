@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, Card, Col } from "react-bootstrap";
 
-const ProductCard = ({ product, addToCart }) => {
+const ProductCard = ({ product, onAddToCart }) => {
   const handleClick = () => {
-    addToCart(product,true);
+    onAddToCart(product,true);
   };
 
   let { url, title, price } = product;

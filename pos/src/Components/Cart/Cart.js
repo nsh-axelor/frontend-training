@@ -8,14 +8,13 @@ import {
   Row,
 } from "react-bootstrap";
 
-import "./Cart.css";
 import Modal from "../Modal";
 import CartProduct from "./CartProduct";
 
 const Cart = ({
   handleShowModal,
-  addToCart,
-  removeFromCart,
+  onAddToCart,
+  onRemoveFromCart,
   cart,
   showModal,
   clearCart,
@@ -36,8 +35,8 @@ const Cart = ({
           <CartProduct
             cartProduct={cartProduct}
             key={cartProduct.id}
-            addToCart={addToCart}
-            removeFromCart={removeFromCart}
+            onAddToCart={onAddToCart}
+            onRemoveFromCart={onRemoveFromCart}
           />
         ))}
       </ListGroup>

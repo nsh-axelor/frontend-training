@@ -1,5 +1,10 @@
-import React, { useState } from "react";
-import { Container, Nav, Navbar as BsNavbar, NavDropdown } from "react-bootstrap";
+import React from "react";
+import {
+  Container,
+  Nav,
+  Navbar as BsNavbar,
+  NavDropdown,
+} from "react-bootstrap";
 import CartIcon from "./CartIcon";
 import "./Navbar.css";
 
@@ -20,12 +25,13 @@ const options = [
 ];
 
 const Navbar = ({
-  categories,
+  links,
   brandName,
   noOfCartItems,
-  filterByCategory,
-  sortBy,
-  renderCart,
+  Cart,
+  setActiveLink,
+  option,
+  setOption,
 }) => {
   // For transforming the categories for navbar
   const transformText = (text) => {
@@ -33,21 +39,17 @@ const Navbar = ({
     return transformedText;
   };
 
-  // For getting the option that is selected currently
-  const [option, setOption] = useState("");
-  const [reversed, setReversed] = useState(false);
   const onOptionSelect = (s) => {
-    if (option === s) {
-      setReversed((prevState) => {
-        return !prevState;
-      });
-      sortBy(s, !reversed);
+    if (option.property === s) {
+      setOption({ ...option, order: option.order === "ASC" ? "DESC" : "ASC" });
     } else {
-      setReversed(false);
-      setOption(s);
-      sortBy(s, false);
+      setOption({
+        property: s,
+        order: "ASC",
+      });
     }
   };
+  
   return (
     <>
       <BsNavbar bg="dark" variant="dark">
@@ -57,17 +59,17 @@ const Navbar = ({
             className="me-auto"
             defaultActiveKey={"all"}
             onSelect={(selectedKey) => {
-              filterByCategory(selectedKey);
+              setActiveLink(selectedKey);
             }}
           >
             <Nav.Link eventKey="all">All</Nav.Link>
-            {categories.map((category) => (
+            {links.map((category) => (
               <Nav.Link key={category} eventKey={category}>
                 {transformText(category)}
               </Nav.Link>
             ))}
           </Nav>
-          <Nav className="me-auto" activeKey={option}>
+          <Nav className="me-auto" activeKey={option.property}>
             <NavDropdown title="Sort">
               {options.map(({ eventKey, title }) => (
                 <NavDropdown.Item
@@ -76,18 +78,17 @@ const Navbar = ({
                   onClick={() => onOptionSelect(eventKey)}
                 >
                   {title}{" "}
-                  {reversed ? (
-                    <i class="bi bi-sort-down"></i>
-                  ) : (
-                    <i class="bi bi-sort-up"></i>
-                  )}
+                  {option.order === "DESC" && option.property === eventKey ? (
+                    <i className="bi bi-sort-down"></i>
+                  ) : option.order === "ASC" && option.property === eventKey ? (
+                    <i className="bi bi-sort-up"></i>
+                  ) : null}
                 </NavDropdown.Item>
               ))}
               <NavDropdown.Divider />
               <NavDropdown.Item
                 onClick={() => {
-                  sortBy("id", false);
-                  setOption("");
+                  setOption({ property: "id" });
                 }}
               >
                 Clear
@@ -96,7 +97,7 @@ const Navbar = ({
           </Nav>
           <BsNavbar.Collapse className="justify-content-end">
             <BsNavbar.Text>
-              <CartIcon noOfCartItems={noOfCartItems} renderCart={renderCart} />
+              <CartIcon noOfCartItems={noOfCartItems} Cart={Cart} />
             </BsNavbar.Text>
           </BsNavbar.Collapse>
         </Container>

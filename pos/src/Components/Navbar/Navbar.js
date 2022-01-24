@@ -33,6 +33,7 @@ const Navbar = ({
   option,
   setOption,
 }) => {
+
   // For transforming the categories for navbar
   const transformText = (text) => {
     let transformedText = text[0].toUpperCase() + text.substring(1) + "s";

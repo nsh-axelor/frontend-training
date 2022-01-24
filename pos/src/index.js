@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './Components/App';
+import State from './Context/State';
 
 
 
 ReactDOM.render(
   <React.StrictMode>
+  <State>
     <App />
+  </State>
   </React.StrictMode>,
   document.getElementById('root')
 );

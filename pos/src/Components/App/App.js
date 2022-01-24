@@ -1,26 +1,30 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useContext } from "react";
 import "./App.css";
 import Products from "../Products";
 import { Col, Container, ToastContainer, Row } from "react-bootstrap";
 import Cart from "../Cart";
 import Toast from "../Toast";
 import Navbar from "../Navbar";
+import Context from "../../Context/Context";
 
 const App = () => {
   // Data fetched from JSON file
-  const [data, setData] = useState([]);
+  const { dataState, cartState, categoryState, toast, modal, sortState } =
+    useContext(Context);
+
+  const [data, setData] = dataState;
 
   // For handling Cart Data
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = cartState;
 
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = categoryState;
 
   // For generated Tosts
-  const [toastList, setToastList] = useState([]);
+  const [toastList, setToastList] = toast;
 
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = modal;
 
-  const [sort, setSort] = useState({});
+  const [sort, setSort] = sortState;
 
   // Fetching the data from products.json file
   useEffect(() => {
@@ -152,13 +156,12 @@ const App = () => {
     return sortedData;
   }, [category, data, sort]);
 
-  
   return (
     <>
       <Navbar
         brandName="Axelor POS"
         noOfCartItems={cart.length}
-        links = {$categories}
+        links={$categories}
         Cart={renderCart}
         setActiveLink={setCategory}
         option={sort}

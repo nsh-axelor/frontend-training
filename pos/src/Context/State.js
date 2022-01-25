@@ -8,20 +8,16 @@ const State = (props) => {
   const [toastList, setToastList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [sort, setSort] = useState([]);
-  return (
-    <Context.Provider
-      value={{
-        dataState: [data, setData],
-        cartState: [cart, setCart],
-        categoryState: [category, setCategory],
-        toast: [toastList, setToastList],
-        modal: [showModal, setShowModal],
-        sortState: [sort, setSort],
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  );
+
+  const appState = {
+    data: [data, setData],
+    cart: [cart, setCart],
+    category: [category, setCategory],
+    toastList: [toastList, setToastList],
+    showModal: [showModal, setShowModal],
+    sort: [sort, setSort],
+  };
+  return <Context.Provider value={appState}>{props.children}</Context.Provider>;
 };
 
 export default State;

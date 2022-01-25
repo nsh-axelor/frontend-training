@@ -8,23 +8,22 @@ import Navbar from "../Navbar";
 import Context from "../../Context/Context";
 
 const App = () => {
-  // Data fetched from JSON file
-  const { dataState, cartState, categoryState, toast, modal, sortState } =
-    useContext(Context);
+  const appState = useContext(Context);
 
-  const [data, setData] = dataState;
+  // Data fetched from JSON file
+  const [data, setData] = appState.data;
 
   // For handling Cart Data
-  const [cart, setCart] = cartState;
+  const [cart, setCart] = appState.cart;
 
-  const [category, setCategory] = categoryState;
+  const [category, setCategory] = appState.category;
 
   // For generated Tosts
-  const [toastList, setToastList] = toast;
+  const [toastList, setToastList] = appState.toastList;
 
-  const [showModal, setShowModal] = modal;
+  const [showModal, setShowModal] = appState.showModal;
 
-  const [sort, setSort] = sortState;
+  const [sort, setSort] = appState.sort;
 
   // Fetching the data from products.json file
   useEffect(() => {

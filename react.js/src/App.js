@@ -6,15 +6,19 @@ import "./App.css";
 // UnComment below given line for reviewing Form-Project
 // import Form from './Form-Project';
 
-
 // UnComment below given line for reviewing Uncontrolled from
-import UncontrolledForm from "./UncontrolledForm";
+// import UncontrolledForm from "./UncontrolledForm";
 
 // UnComment below given line for reviewing Portfolio_Webiste-Project
 // import PortfolioWebsite from "./Portfolio-Website"
 
 // UnComment below given line for reviewing Calendar-Project
 // import Calendar from './Calendar-Project';
+
+// Uncomment below given lines for reviewing ReduxPractice
+import ReduxPractice from "./ReduxPractice/ReduxPractice";
+import { Provider } from "react-redux";
+import store from "./ReduxPractice/store";
 
 function App() {
   return (
@@ -31,9 +35,13 @@ function App() {
       {/* UnComment Calendar Tag for reviewing Calendar-Project */}
       {/* <Calendar /> */}
 
-
       {/* UnComment UncontrolledForm Tag for reviewing Uncontrolled form */}
-      <UncontrolledForm />
+      {/* <UncontrolledForm /> */}
+
+      {/* UnComment UncontrolledForm Tag for reviewing Redux Practice Project */}
+      <Provider store={store}>
+        <ReduxPractice />
+      </Provider>
     </div>
   );
 }

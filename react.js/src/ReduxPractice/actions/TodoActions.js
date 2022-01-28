@@ -1,17 +1,17 @@
-import { add, remove } from "./actionType"
+import { add, clear, edit, remove } from "./actionType"
 
-const addTodoTest = (title) => {
+const addTodo = (title) => {
     return(
         {
             type:add,
             payload:{
-                title
+                title,
             }
         }
     )
 }
 
-const removeTodoTest = (id) => {
+const removeTodo = (id) => {
     return({
         type:remove,
         payload:{
@@ -20,5 +20,21 @@ const removeTodoTest = (id) => {
     })
 }
 
+const editTodo = (title,id) => {
+    return({
+        type:edit,
+        payload:{
+            title,
+            id
+        }
 
-export {addTodoTest,removeTodoTest}
+    })
+}
+
+const clearList = () => {
+    return({
+        type:clear
+    })
+}
+
+export {addTodo,removeTodo,editTodo,clearList }

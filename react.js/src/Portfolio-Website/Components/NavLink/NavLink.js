@@ -1,9 +1,10 @@
 import React from "react";
+import { NavLink as NLink } from "react-router-dom";
 import "./NavLink.css";
-const NavLink = ({ value }) => {
+const NavLink = ({ link }) => {
   return (
     <li>
-      <a href="/">{value}</a>
+      <NLink to={link.address}>{link.name}</NLink>
     </li>
   );
 };

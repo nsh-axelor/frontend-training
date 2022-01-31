@@ -1,0 +1,52 @@
+.contact{
+    text-align: center;
+    /* width: 100%; */
+    margin: 50px;
+}
+.contact-form{
+    text-align: left;
+    margin-top: 50px;
+}
+
+.labels{
+    width: 12%;
+    font-size: 1.3rem;
+    margin-right: 20px;
+}
+
+.input{
+    justify-content: center;
+    display: flex;
+    align-items: baseline;
+}
+
+input{
+    width: 70%;
+    font-size: 1.2rem;
+    font-family:'Balsamiq Sans', cursive;
+    height: 30px;
+    margin: 10px 10px 40px 10px;
+}
+textarea{
+    width: 70%;
+    height: 200px;
+    font-size: 1.2rem;
+    font-family:'Balsamiq Sans', cursive;
+}
+
+button{
+    margin: 40px 10px;
+    font-family:'Balsamiq Sans', cursive;
+    font-size: 1.5rem;
+    color: red;
+    width: 40%;
+    border: 2px solid red;
+    outline: none;
+    background-color: white;
+}
+button:hover{
+    background-color: red;
+    border: none;
+    transition: 0.7s;
+    color: white;
+}

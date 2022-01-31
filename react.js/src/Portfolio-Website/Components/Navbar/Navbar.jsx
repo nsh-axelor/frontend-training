@@ -1,18 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import NavLink from "../NavLink";
 import "./Navbar.css";
 
-const navLinks = ["Home", "Projects", "About", "Contact"];
+const navLinks = [{name:"Home",address:"/"}, {name:"Projects",address:"/projects"}, {name:"About",address:"/about"}, {name:"Contact",address:"/contact"}];
 function Navbar() {
   return (
     <div className="navbar">
       <div className="navbar-content">
         <h1 className="name">
-          <a href="/">Nandit</a>
+          <Link to="/">Nandit</Link>
         </h1>
         <ul>
           {navLinks.map((navLink) => (
-            <NavLink value={navLink} />
+            <NavLink link={navLink} />
           ))}
         </ul>
       </div>

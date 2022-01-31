@@ -1,0 +1,37 @@
+/* For Projects Section */
+.project-cards {
+  text-align: center;
+  margin: 50px auto;
+}
+.card {
+  width: 350px;
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  border: 2px solid black;
+  border-radius: 10%;
+}
+
+.card a {
+  color: red;
+}
+.project-image {
+  /* object-fit: cover; */
+  border: 1px solid black;
+  width: 330px;
+  height: 300px;
+  border-radius: 30%;
+}
+
+.project-image:hover {
+  border-radius: 10%;
+  transition: 0.5s;
+}
+.title {
+  margin-top: 15px;
+  font-size: 1.5rem;
+}
+.project-info {
+  margin: auto;
+  width: 90%;
+}

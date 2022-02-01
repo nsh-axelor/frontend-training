@@ -1,7 +1,7 @@
 import "./App.css";
 
 // UnComment below given line for reviewing React Practice file
-// import ReactPractice from './ReactPractice.jsx'
+import ReactPractice from './ReactPractice.jsx'
 
 // UnComment below given line for reviewing Form-Project
 // import Form from './Form-Project';
@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="App">
       {/* UnComment ReactPractice Tag for reviewing React Practice file */}
-      {/* <ReactPractice />    */}
+      <ReactPractice />   
 
       {/* UnComment Form Tag for reviewing Form-Project */}
       {/* <Form /> */}

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import SocialLink from "../SocialLink";
+import SocialLink from "./SocialLink";
 const socialHandles = [
   {
     link: "https://www.linkedin.com/in/nandit-shah/",

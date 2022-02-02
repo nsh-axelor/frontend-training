@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NavLink from "../NavLink";
+import NavLink from "./NavLink";
 import "./Navbar.css";
 
 const navLinks = [{name:"Home",address:"/"}, {name:"Projects",address:"/projects"}, {name:"About",address:"/about"}, {name:"Contact",address:"/contact"}];

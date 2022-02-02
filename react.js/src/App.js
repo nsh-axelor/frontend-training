@@ -1,7 +1,8 @@
 import "./App.css";
 
+
 // UnComment below given line for reviewing React Practice file
-import ReactPractice from './ReactPractice.jsx'
+// import ReactPractice from './ReactPractice.jsx'
 
 // UnComment below given line for reviewing Form-Project
 // import Form from './Form-Project';
@@ -10,7 +11,7 @@ import ReactPractice from './ReactPractice.jsx'
 // import UncontrolledForm from "./UncontrolledForm";
 
 // UnComment below given line for reviewing Portfolio_Webiste-Project
-// import PortfolioWebsite from "./Portfolio-Website"
+import PortfolioWebsite from "./Portfolio-Website"
 
 // UnComment below given line for reviewing Calendar-Project
 // import Calendar from './Calendar-Project';
@@ -23,17 +24,25 @@ import ReactPractice from './ReactPractice.jsx'
 // Uncomment below given lines for reviewing ReactRouter
 // import ReactRouter from "./ReactRouterPractice/ReactRouter";
 
+// Uncomment below given lines for Higher order component 
+// import TodoListComponent from "./HOCPractice/TodoList";
+// import UserListComponent from "./HOCPractice/UserList";
+
+// Uncomment below given lines for Error Boundry
+// import Users from "./ErrorBoundry/Users";
+
+
 function App() {
   return (
     <div className="App">
       {/* UnComment ReactPractice Tag for reviewing React Practice file */}
-      <ReactPractice />   
+      {/* <ReactPractice />    */}
 
       {/* UnComment Form Tag for reviewing Form-Project */}
       {/* <Form /> */}
 
       {/* UnComment PortfolioWebsite Tag for reviewing Portfolio_Webiste-Project */}
-      {/* <PortfolioWebsite /> */}
+      <PortfolioWebsite />
 
       {/* UnComment Calendar Tag for reviewing Calendar-Project */}
       {/* <Calendar /> */}
@@ -48,6 +57,17 @@ function App() {
 
       {/* Uncomment Below given code for reviewing React Router Practice  */}
       {/* <ReactRouter /> */}
+
+
+      {/* Uncomment Below code for viewing Higher Order Component */}
+      {/* <h1>Higher Order Component</h1>
+      <div className="HOCPractice" style={{marginTop:"50px",display:"flex",justifyContent:"space-around"}}>
+        <UserListComponent />
+        <TodoListComponent />
+      </div> */}
+
+      {/* Uncomment below code for viewing Error Boundy Example */}
+      {/* <Users /> */}
     </div>
   );
 }

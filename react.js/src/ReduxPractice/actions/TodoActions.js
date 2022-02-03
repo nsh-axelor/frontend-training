@@ -1,4 +1,4 @@
-import { add, clear, edit, remove } from "./actionType"
+import { add, changeCategory, clear, remove, todoDone } from "./actionType"
 
 const addTodo = (title) => {
     return(
@@ -20,14 +20,12 @@ const removeTodo = (id) => {
     })
 }
 
-const editTodo = (title,id) => {
+const markAsDone = (id) => {
     return({
-        type:edit,
+        type:todoDone,
         payload:{
-            title,
             id
         }
-
     })
 }
 
@@ -37,4 +35,13 @@ const clearList = () => {
     })
 }
 
-export {addTodo,removeTodo,editTodo,clearList }
+
+const changeCategoryClick = (category) => {
+    return({
+        type: changeCategory,
+        payload:{
+            category
+        }
+    })
+}
+export {addTodo,removeTodo ,clearList, markAsDone, changeCategoryClick }

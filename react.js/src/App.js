@@ -11,15 +11,15 @@ import "./App.css";
 // import UncontrolledForm from "./UncontrolledForm";
 
 // UnComment below given line for reviewing Portfolio_Webiste-Project
-import PortfolioWebsite from "./Portfolio-Website"
+// import PortfolioWebsite from "./Portfolio-Website"
 
 // UnComment below given line for reviewing Calendar-Project
 // import Calendar from './Calendar-Project';
 
 // Uncomment below given lines for reviewing ReduxPractice
-// import ReduxPractice from "./ReduxPractice/ReduxPractice";
-// import { Provider } from "react-redux";
-// import store from "./ReduxPractice/store";
+import ReduxPractice from "./ReduxPractice/ReduxPractice";
+import { Provider } from "react-redux";
+import store from "./ReduxPractice/store";
 
 // Uncomment below given lines for reviewing ReactRouter
 // import ReactRouter from "./ReactRouterPractice/ReactRouter";
@@ -42,7 +42,7 @@ function App() {
       {/* <Form /> */}
 
       {/* UnComment PortfolioWebsite Tag for reviewing Portfolio_Webiste-Project */}
-      <PortfolioWebsite />
+      {/* <PortfolioWebsite /> */}
 
       {/* UnComment Calendar Tag for reviewing Calendar-Project */}
       {/* <Calendar /> */}
@@ -51,9 +51,9 @@ function App() {
       {/* <UncontrolledForm /> */}
 
       {/* UnComment UncontrolledForm Tag for reviewing Redux Practice Project */}
-      {/* <Provider store={store}>
+      <Provider store={store}>
         <ReduxPractice />
-      </Provider> */}
+      </Provider>
 
       {/* Uncomment Below given code for reviewing React Router Practice  */}
       {/* <ReactRouter /> */}

@@ -1,4 +1,4 @@
-import { add, clear, edit, remove } from "../actions/actionType";
+import { add, clear, remove, todoDone } from "../actions/actionType";
 
 let newTodoId = 0
 export const todoReducer = (state = [], action) => {
@@ -6,7 +6,7 @@ export const todoReducer = (state = [], action) => {
     case add:
       let newState = [
         ...state,
-        { title: action.payload.title, id: newTodoId++ },
+        { title: action.payload.title, id: newTodoId++, isDone:false },
       ];
       return newState;
     case remove:
@@ -15,16 +15,12 @@ export const todoReducer = (state = [], action) => {
         (todo) => todo.id !== action.payload.id
       );
       return newTodoState;
-    case edit:
-      let editState = [];
-      let exsistedTodoIndex = state.findIndex(
-        (todo) => todo.id === action.payload.id
-      );
-      editState = [...state];
-      editState[exsistedTodoIndex].title = action.payload.title;
-      return editState;
     case clear:
         return []
+    case todoDone:
+      let todos = [...state];
+      todos[action.payload.id].isDone = !todos[action.payload.id].isDone 
+      return todos
     default:
       return state;
   }

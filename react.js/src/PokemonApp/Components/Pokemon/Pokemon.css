@@ -1,0 +1,11 @@
+.pokemon-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-items: center;
+    font-size: 1.2rem;
+}
+.item{
+    text-align: center;
+}

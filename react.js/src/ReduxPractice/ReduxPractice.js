@@ -2,7 +2,10 @@ import React, { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, changeCategoryClick, clearList } from "./actions/TodoActions";
 import List from "./List";
+import "./ReduxPractice.css";
 
+const categorySelectStyle = { backgroundColor:"red",color:"white" }
+const categories = [{type:"all",title:"All Todos"},{type:"incomplete",title:"Incomplete Todos"},{type:"complete",title:"Complete Todos"}]
 const ReduxPractice = () => {
   const todoList = useSelector((state) => state.todoReducer);
   const category = useSelector((state) => state.categoryReducer);
@@ -22,36 +25,44 @@ const ReduxPractice = () => {
   }, [todoList, category]);
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Enter new to-do here"
-        onChange={(e) => setTodo(e.target.value)}
-        value={todo}
-      />
-      <button
-        onClick={() => {
-          setTodo("");
-          dispatch(addTodo(todo));
-        }}
-      >
-        Add
-      </button>
-      <button
-        onClick={() => {
-          setTodo("");
-          dispatch(clearList());
-        }}
-        disabled={todoList.length === 0}
-      >
-        Clear
-      </button>
-      <div onClick={() => dispatch(changeCategoryClick("all"))}>All</div>
-      <div onClick={() => dispatch(changeCategoryClick("incomplete"))}>
-        In-complete todo
+    <div className="todo-app">
+    <h1>Todo Application</h1>
+      <div className="todo-input">
+        <input
+          type="text"
+          placeholder="Enter new to-do here"
+          onChange={(e) => setTodo(e.target.value)}
+          value={todo}
+        />
+        <div className="todo-buttons">
+          <button
+            onClick={() => {
+              setTodo("");
+              dispatch(addTodo(todo));
+            }}
+            disabled={todo === "" ? true : false}
+          >
+            Add
+          </button>
+          <button
+            onClick={() => {
+              setTodo("");
+              dispatch(clearList());
+            }}
+            disabled={todoList.length === 0}
+          >
+            Clear
+          </button>
+        </div>
       </div>
-      <div onClick={() => dispatch(changeCategoryClick("complete"))}>
-        Complete Todos
+      <div className="categories">
+      {
+        categories.map(({type,title}) => (
+          <div style={category === type ?  categorySelectStyle: {}} onClick={() => dispatch(changeCategoryClick(type))}>
+            {title}
+          </div>
+        ))
+      }
       </div>
       <List data={$todos} />
     </div>

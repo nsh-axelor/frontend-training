@@ -10,31 +10,42 @@ function List({ data }) {
     return category === "incomplete"
       ? "Incomplete Todos"
       : category === "complete"
-      ? "complete Todos"
+      ? "Complete Todos"
       : "All todos";
   }, [category]);
   return (
-    <>
-      <h1>{$heading}</h1>
-      <ul>
-        {data.map(({ id, title, isDone }) => {
-          return (
-            <div key={id}>
-              <li
-                onClick={() => dispatch(markAsDone(id))}
-                style={{ textDecoration: isDone ? "line-through" : "none" }}
-              >
-                {title}
-              </li>
-              <button onClick={() => dispatch(removeTodo(id))}>-</button>
-              <button onClick={() => dispatch(markAsDone(id))}>
-                Mark As Done
-              </button>
-            </div>
-          );
-        })}
-      </ul>
-    </>
+    <div className="todo-list">
+      {data.length === 0 ? (
+        <h1>Selected list is empty</h1>
+      ) : (
+        <>
+          <h1>{$heading}</h1>
+          <ol>
+            {data.map(({ id, title, isDone }) => {
+              return (
+                <div key={id} className="todo">
+                  <li
+                    onClick={() => dispatch(markAsDone(id))}
+                    style={{ textDecoration: isDone ? "line-through" : "none" }}
+                  >
+                    {title}
+                  </li>
+                  <button
+                    className="remove"
+                    onClick={() => dispatch(removeTodo(id))}
+                  >
+                    -
+                  </button>
+                  <button onClick={() => dispatch(markAsDone(id))}>
+                    Mark As Done
+                  </button>
+                </div>
+              );
+            })}
+          </ol>
+        </>
+      )}
+    </div>
   );
 }
 

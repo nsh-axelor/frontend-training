@@ -1,4 +1,5 @@
 import "./App.css";
+import NotesApp from "./NotesApp/NotesApp";
 
 
 // UnComment below given line for reviewing React Practice file
@@ -17,9 +18,9 @@ import "./App.css";
 // import Calendar from './Calendar-Project';
 
 // Uncomment below given lines for reviewing ReduxPractice
-import ReduxPractice from "./ReduxPractice/ReduxPractice";
-import { Provider } from "react-redux";
-import store from "./ReduxPractice/store";
+// import ReduxPractice from "./ReduxPractice/ReduxPractice";
+// import { Provider } from "react-redux";
+// import store from "./ReduxPractice/store";
 
 // Uncomment below given lines for reviewing ReactRouter
 // import ReactRouter from "./ReactRouterPractice/ReactRouter";
@@ -57,9 +58,9 @@ function App() {
       {/* <UncontrolledForm /> */}
 
       {/* UnComment UncontrolledForm Tag for reviewing Redux Practice Project */}
-      <Provider store={store}>
+      {/* <Provider store={store}>
         <ReduxPractice />
-      </Provider>
+      </Provider> */}
 
       {/* Uncomment Below given code for reviewing React Router Practice  */}
       {/* <ReactRouter /> */}
@@ -82,6 +83,9 @@ function App() {
           <PokeApp />
         </Router>
       </Provider> */}
+
+
+      <NotesApp />
     </div>
   );
 }

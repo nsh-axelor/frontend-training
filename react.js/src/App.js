@@ -1,5 +1,4 @@
 import "./App.css";
-import NotesApp from "./NotesApp/NotesApp";
 
 
 // UnComment below given line for reviewing React Practice file
@@ -25,7 +24,7 @@ import NotesApp from "./NotesApp/NotesApp";
 // Uncomment below given lines for reviewing ReactRouter
 // import ReactRouter from "./ReactRouterPractice/ReactRouter";
 
-// Uncomment below given lines for Higher order component 
+// Uncomment below given lines for Higher order component
 // import TodoListComponent from "./HOCPractice/TodoList";
 // import UserListComponent from "./HOCPractice/UserList";
 
@@ -38,6 +37,9 @@ import NotesApp from "./NotesApp/NotesApp";
 // import PokeApp from "./PokemonApp/PokeApp";
 // import {BrowserRouter as Router} from "react-router-dom"
 
+// Uncomment below given lines for NotesApp project
+import State from "./NotesApp/Context/State";
+import NotesApp from "./NotesApp/NotesApp";
 
 function App() {
   return (
@@ -65,7 +67,6 @@ function App() {
       {/* Uncomment Below given code for reviewing React Router Practice  */}
       {/* <ReactRouter /> */}
 
-
       {/* Uncomment Below code for viewing Higher Order Component */}
       {/* <h1>Higher Order Component</h1>
       <div className="HOCPractice" style={{marginTop:"50px",display:"flex",justifyContent:"space-around"}}>
@@ -76,7 +77,6 @@ function App() {
       {/* Uncomment below code for viewing Error Boundy Example */}
       {/* <Users /> */}
 
-
       {/* Uncomment below code for viewing PokeApp Project */}
       {/* <Provider store={store}>
         <Router>
@@ -85,7 +85,10 @@ function App() {
       </Provider> */}
 
 
-      <NotesApp />
+      {/* Uncomment below =code for viewing Notes App Project */}
+      <State>
+        <NotesApp />
+      </State>
     </div>
   );
 }

@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsMoonStars, BsCloudSun } from "react-icons/bs";
-function Header({ dark, setDark }) {
+import Context from "../../Context/Context";
+function Header() {
+  const appState = useContext(Context)
+  const [dark,setDark] = appState.dark
   return (
     <div className="header">
       <h1>Note's App</h1>

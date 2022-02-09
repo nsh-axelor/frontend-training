@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {MdSearch} from 'react-icons/md'
-function Search({value,handleOnChange}) {
+import Context from '../../Context/Context';
+function Search() {
+  const appState = useContext(Context)
+  const [search,setSearch] = appState.search
   return <div className='search'>
     <MdSearch className='search-icon' size="1.3em"/>
-    <input placeholder='Search Here' value={value} onChange={(e) => handleOnChange(e.target.value)} />
+    <input placeholder='Search Here' value={search} onChange={(e) => setSearch(e.target.value)} />
   </div>;
 }
 

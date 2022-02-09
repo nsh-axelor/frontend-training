@@ -5,8 +5,8 @@ import Note from './Note';
 function Notes({notes,handleSaveNote,handleDeleteNote}) {
   return <div className='notes'>
     {
-        notes.map(({id,note,date}) => (
-            <Note note={note} key={id} date={date} id={id} handleDeleteNote={handleDeleteNote}/>
+        notes.map(({id,note,date,category}) => (
+            <Note note={note} key={id} date={date} id={id} handleDeleteNote={handleDeleteNote} category={category}/>
         ))
     }
     <AddNote handleSaveNote={handleSaveNote} />

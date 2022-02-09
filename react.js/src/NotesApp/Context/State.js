@@ -5,18 +5,22 @@ import { nanoid } from "nanoid";
 const State = (props) => {
 
     const [notes, setNotes] = useState([
-        { id: nanoid(), note: "This is my first note", date: "11/04/2021" },
-        { id: nanoid(), note: "This is my second note", date: "19/05/2021" },
-        { id: nanoid(), note: "This is my third note", date: "17/09/2021" },
+        { id: nanoid(), note: "This is my first note", date: "11/04/2021" , category:"Work"},
+        { id: nanoid(), note: "This is my second note", date: "19/05/2021", category:"Work" },
+        { id: nanoid(), note: "This is my third note", date: "17/09/2021" , category:"Work"},
       ]);
     
     const [dark,setDark] = useState(false)
     const [search,setSearch] = useState("")
+    const [categories,setCategories] = useState(["All","General","Work","Home","React"])
+    const [category,setCategory] = useState("All")
 
     const appState = {
         notes:[notes,setNotes],
         dark:[dark,setDark],
-        search:[search,setSearch]
+        search:[search,setSearch],
+        categories:[categories,setCategories],
+        category:[category,setCategory]
     }
 
     return <Context.Provider value={appState}>

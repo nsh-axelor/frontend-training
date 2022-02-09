@@ -114,3 +114,54 @@
 .moon-icon{
     cursor: pointer;
 }
+
+.categories{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.category{
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #ededed;
+    border-radius: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.category-input{
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #ededed;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+    border: 1px solid red;
+}
+
+.category-input:focus{
+    outline: none;
+}
+
+.note-input{
+    min-width: 100%;
+}
+
+.category-select{
+    background-color: #67d7cc;
+    border: 1px solid white;
+    border-radius: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.category-select:focus{
+    outline: none;
+}

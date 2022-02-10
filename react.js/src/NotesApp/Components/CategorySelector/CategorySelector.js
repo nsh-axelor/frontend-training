@@ -18,7 +18,7 @@ function CategorySelector() {
   const handleCategoryAdd = (e) => {
       if(e.keyCode === 13 && e.target.value.length !== 0 && contains(e.target.value)){
           setCategories((prevCategories) => ([...prevCategories,category]))
-          setCategory(" ")
+          setCategory("")
       }
   }
   return (

@@ -6,6 +6,8 @@ import Search from "./Components/Search";
 import Header from "./Components/Header";
 import Context from "./Context/Context";
 import CategorySelector from "./Components/CategorySelector/CategorySelector";
+import Modal from "./Components/Notes/Modal";
+
 
 function NotesApp() {
   const appState = useContext(Context);
@@ -49,7 +51,7 @@ function NotesApp() {
   };
   return (
     <div className={dark && "dark-mode"}>
-      <div className="container">
+      <div className="notes-container">
         <Header />
         <Search />
         <CategorySelector />
@@ -59,6 +61,7 @@ function NotesApp() {
           handleDeleteNote={deleteNote}
         />
       </div>
+      <Modal />
     </div>
   );
 }

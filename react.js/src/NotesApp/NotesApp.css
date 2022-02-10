@@ -1,10 +1,9 @@
 
 .note{
-
     background-color: #fef68a;
     border-radius: 10px;
     padding: 1rem;
-    min-height: 170px;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -24,7 +23,7 @@
     grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
 }
 
-.container{
+.notes-container{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
     'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -164,4 +163,10 @@
 
 .category-select:focus{
     outline: none;
+}
+
+.view-more{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 
 
 // UnComment below given line for reviewing React Practice file
@@ -38,8 +38,12 @@ import "./App.css";
 // import {BrowserRouter as Router} from "react-router-dom"
 
 // Uncomment below given lines for NotesApp project
-import State from "./NotesApp/Context/State";
-import NotesApp from "./NotesApp/NotesApp";
+// import State from "./NotesApp/Context/State";
+// import NotesApp from "./NotesApp/NotesApp";
+
+// Uncooment below given lines for DexiePractice
+import DexiePractice from "./DexiePractice/DexiePractice";
+
 
 function App() {
   return (
@@ -86,9 +90,13 @@ function App() {
 
 
       {/* Uncomment below =code for viewing Notes App Project */}
-      <State>
+      {/* <State>
         <NotesApp />
-      </State>
+      </State> */}
+
+
+      {/* Uncomment below =code for viewing DexiePractice */}
+      <DexiePractice />
     </div>
   );
 }

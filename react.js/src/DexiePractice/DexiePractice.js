@@ -3,7 +3,7 @@ import Dexie from "dexie";
 import { useLiveQuery } from "dexie-react-hooks";
 
 
-let students = [{ id: 1, name: "nna", rollno: "hello" }];
+let students = [];
 const border = {border:"1px solid black"}
 function DexiePractice() {
   const [name, setName] = useState("");

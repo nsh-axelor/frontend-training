@@ -24,7 +24,7 @@ function CategorySelector() {
   return (
     <div className="categories">
       {categories.map((category) => (
-        <Cateogry value={category} />
+        <Cateogry key={category} value={category} />
       ))}
       <input className="category-input" onKeyDown={handleCategoryAdd} type="text" placeholder="Enter New Category Here" onChange={(e) => setCategory(e.target.value)}/>
     </div>

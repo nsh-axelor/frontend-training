@@ -1,7 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import Notes from "./Components/Notes";
 import "./NotesApp.css";
-import { nanoid } from "nanoid";
 import Search from "./Components/Search";
 import Header from "./Components/Header";
 import Context from "./Context/Context";
@@ -11,18 +10,15 @@ import Modal from "./Components/Notes/Modal";
 
 function NotesApp() {
   const appState = useContext(Context);
-  const [search, setSearch] = appState.search;
-  const [dark, setDark] = appState.dark;
-  const [notes, setNotes] = appState.notes;
-  const [categories, setCategories] = appState.categories;
-  const [category,setCategory] = appState.category;
+  const [search] = appState.search;
+  const [dark] = appState.dark;
+  const [notes] = appState.notes;
+  const [category] = appState.category;
+  const db = appState.db
 
-  const saveNote = (text,category) => {
+  const saveNote = async (text,category) => {
     let date = new Date().toLocaleDateString();
-    setNotes((prevNotes) => {
-      let newNotes = [...prevNotes, { id: nanoid(), note: text, date, category }];
-      return newNotes;
-    });
+    await db.notes.add({date:date,note:text,category})
   };
 
   const filterByCategory = (givenNotes) => {
@@ -42,15 +38,10 @@ function NotesApp() {
   }, [search, notes,category]);
 
   const deleteNote = (id) => {
-    setNotes((prevNotes) => {
-      let newNotes = prevNotes.filter((note) => {
-        return note.id !== id;
-      });
-      return newNotes;
-    });
+    db.notes.where("id").equals(id).delete()
   };
   return (
-    <div className={dark && "dark-mode"}>
+    <div className={dark ? "dark-mode" : undefined}>
       <div className="notes-container">
         <Header />
         <Search />

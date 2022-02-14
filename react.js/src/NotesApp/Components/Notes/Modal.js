@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useContext } from 'react'
 import  {Modal as BtModal} from "react-bootstrap"
 import  {Button} from "react-bootstrap"
 
@@ -6,7 +6,7 @@ import Context from '../../Context/Context'
 function Modal() {
     const appData = useContext(Context)
     const [showModal,setShowModal] = appData.modal
-    const [selectedNote, setSelectedNote] = appData.selectedNote;
+    const [selectedNote] = appData.selectedNote;
 
     return (
     <BtModal

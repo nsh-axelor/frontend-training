@@ -38,11 +38,16 @@
 // import {BrowserRouter as Router} from "react-router-dom"
 
 // Uncomment below given lines for NotesApp project
-import State from "./NotesApp/Context/State";
-import NotesApp from "./NotesApp/NotesApp";
+// import State from "./NotesApp/Context/State";
+// import NotesApp from "./NotesApp/NotesApp";
 
 // Uncooment below given lines for DexiePractice
 // import DexiePractice from "./DexiePractice/DexiePractice";
+
+// Uncooment below given lines for FakeShop
+import FakeShop from "./FakeShop/App";
+import {Provider} from "react-redux"
+import store from "./FakeShop/Redux/store";
 
 
 function App() {
@@ -90,13 +95,17 @@ function App() {
 
 
       {/* Uncomment below =code for viewing Notes App Project */}
-      <State>
+      {/* <State>
         <NotesApp />
-      </State>
+      </State> */}
 
 
       {/* Uncomment below =code for viewing DexiePractice */}
       {/* <DexiePractice /> */}
+
+      <Provider store={store}>
+        <FakeShop />
+      </Provider>
     </div>
   );
 }

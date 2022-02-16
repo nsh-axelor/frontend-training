@@ -45,10 +45,9 @@
 // import DexiePractice from "./DexiePractice/DexiePractice";
 
 // Uncooment below given lines for FakeShop
-import FakeShop from "./FakeShop/App";
 import {Provider} from "react-redux"
 import store from "./FakeShop/Redux/store";
-
+import FakeShop from './FakeShop/FakeShop';
 
 function App() {
   return (

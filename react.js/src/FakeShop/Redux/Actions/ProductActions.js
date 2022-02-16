@@ -25,3 +25,10 @@ export const removeSelectedProduct = () => {
         }
     )
 }
+
+export const selectCategory = (category) => {
+    return({
+        type:ActionTypes.SELECT_CATEGORY,
+        payload:category
+    })
+}
